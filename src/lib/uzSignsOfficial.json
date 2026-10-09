@@ -1,0 +1,2432 @@
+[
+ {
+  "id": "1-1",
+  "num": "1.1",
+  "cat": "warning",
+  "file": "1-1.gif",
+  "en": "Railway crossing with barrier",
+  "ru": "Железнодорожный переезд со шлагбаумом",
+  "uz": "Shlagbaumli temir yo'l kesishmasi"
+ },
+ {
+  "id": "1-2",
+  "num": "1.2",
+  "cat": "warning",
+  "file": "1-2.gif",
+  "en": "Railway crossing without barrier",
+  "ru": "Железнодорожный переезд без шлагбаума",
+  "uz": "Shlagbaumsiz temir yo’l kesishmasi"
+ },
+ {
+  "id": "1-3",
+  "num": "1.3",
+  "cat": "warning",
+  "file": "1-3.png",
+  "en": "Attention “UZP”",
+  "ru": "Винимание “УЗП”",
+  "uz": ". Diqqat \"UZP\""
+ },
+ {
+  "id": "1-3-1",
+  "num": "1.3.1",
+  "cat": "warning",
+  "file": "1-3-1.gif",
+  "en": "Single-path railway",
+  "ru": "Однопутная железная дорога",
+  "uz": "Bir izli temir yo’l"
+ },
+ {
+  "id": "1-3-2",
+  "num": "1.3.2",
+  "cat": "warning",
+  "file": "1-3-2.gif",
+  "en": "Multi-path railway",
+  "ru": "Многопутная железная дорога",
+  "uz": "Ko’p izli temir yo’l"
+ },
+ {
+  "id": "1-4-1",
+  "num": "1.4.1",
+  "cat": "warning",
+  "file": "1-4-1.gif",
+  "en": "Approaching the railway crossing",
+  "ru": "Приближение к железнодорожному переезду",
+  "uz": "Temir yo’l kesishmasining yaqinligi haqida ogohlantirish"
+ },
+ {
+  "id": "1-4-2",
+  "num": "1.4.2",
+  "cat": "warning",
+  "file": "1-4-2.gif",
+  "en": "Approaching the railway crossing",
+  "ru": "Приближение к железнодорожному переезду",
+  "uz": "Temir yo’l kesishmasining yaqinligi haqida ogohlantirish"
+ },
+ {
+  "id": "1-4-3",
+  "num": "1.4.3",
+  "cat": "warning",
+  "file": "1-4-3.gif",
+  "en": "Approaching the railway crossing",
+  "ru": "Приближение к железнодорожному переезду",
+  "uz": "Temir yo’l kesishmasining yaqinligi haqida ogohlantirish"
+ },
+ {
+  "id": "1-4-4",
+  "num": "1.4.4",
+  "cat": "warning",
+  "file": "1-4-4.gif",
+  "en": "Approaching the railway crossing",
+  "ru": "Приближение к железнодорожному переезду",
+  "uz": "Temir yo’l kesishmasining yaqinligi haqida ogohlantirish"
+ },
+ {
+  "id": "1-4-5",
+  "num": "1.4.5",
+  "cat": "warning",
+  "file": "1-4-5.gif",
+  "en": "Approaching the railway crossing",
+  "ru": "Приближение к железнодорожному переезду",
+  "uz": "Temir yo’l kesishmasining yaqinligi haqida ogohlantirish"
+ },
+ {
+  "id": "1-4-6",
+  "num": "1.4.6",
+  "cat": "warning",
+  "file": "1-4-6.gif",
+  "en": "Approaching the railway crossing",
+  "ru": "Приближение к железнодорожному переезду",
+  "uz": "Temir yo’l kesishmasining yaqinligi haqida ogohlantirish"
+ },
+ {
+  "id": "1-5",
+  "num": "1.5",
+  "cat": "warning",
+  "file": "1-5.gif",
+  "en": "Crossing with the tram line",
+  "ru": "Пересечение с трамвайной линией",
+  "uz": "Tramvay yo’li bilan kesishuv"
+ },
+ {
+  "id": "1-6",
+  "num": "1.6",
+  "cat": "warning",
+  "file": "1-6.gif",
+  "en": "Crossing equal roads",
+  "ru": "Пересечение равнозначных дорог",
+  "uz": "Teng ahamiyatli yo’llar kesishuvi"
+ },
+ {
+  "id": "1-7",
+  "num": "1.7",
+  "cat": "warning",
+  "file": "1-7.gif",
+  "en": "Roundabout intersection",
+  "ru": "Пересечение с круговым движением",
+  "uz": "Aylanma harakatlanish bilan kesishuv"
+ },
+ {
+  "id": "1-8",
+  "num": "1.8",
+  "cat": "warning",
+  "file": "1-8.gif",
+  "en": "Traffic light regulation",
+  "ru": "Светофорное регулирование",
+  "uz": "Svetofor tartibga soladi"
+ },
+ {
+  "id": "1-9",
+  "num": "1.9",
+  "cat": "warning",
+  "file": "1-9.gif",
+  "en": "Drawbridge",
+  "ru": "Разводной мост",
+  "uz": "Ko’tarma ko’prik"
+ },
+ {
+  "id": "1-10",
+  "num": "1.10",
+  "cat": "warning",
+  "file": "1-10.gif",
+  "en": "Departure to the embankment",
+  "ru": "Выезд на набережную",
+  "uz": "Sohilga chiqish"
+ },
+ {
+  "id": "1-11-1",
+  "num": "1.11.1",
+  "cat": "warning",
+  "file": "1-11-1.png",
+  "en": "Dangerous bend",
+  "ru": "Опасный поворот",
+  "uz": "Xavfli burilish"
+ },
+ {
+  "id": "1-11-2",
+  "num": "1.11.2",
+  "cat": "warning",
+  "file": "1-11-2.png",
+  "en": "Dangerous bend",
+  "ru": "Опасный поворот",
+  "uz": "Xavfli burilish"
+ },
+ {
+  "id": "1-12-1",
+  "num": "1.12.1",
+  "cat": "warning",
+  "file": "1-12-1.png",
+  "en": "Dangerous bends",
+  "ru": "Опасные повороты",
+  "uz": "Xavfli burilishlar"
+ },
+ {
+  "id": "1-12-2",
+  "num": "1.12.2",
+  "cat": "warning",
+  "file": "1-12-2.png",
+  "en": "Dangerous bends",
+  "ru": "Опасные повороты",
+  "uz": "Xavfli burilishlar"
+ },
+ {
+  "id": "1-13",
+  "num": "1.13",
+  "cat": "warning",
+  "file": "1-13.jpg",
+  "en": "Rapid descent",
+  "ru": "Крутой спуск",
+  "uz": "Tik nishablik"
+ },
+ {
+  "id": "1-14",
+  "num": "1.14",
+  "cat": "warning",
+  "file": "1-14.jpg",
+  "en": "Rapid climb",
+  "ru": "Крутой подъем",
+  "uz": "Tik balandlik"
+ },
+ {
+  "id": "1-15",
+  "num": "1.15",
+  "cat": "warning",
+  "file": "1-15.gif",
+  "en": "Slippy road",
+  "ru": "Скользкая дорога",
+  "uz": "Sirpanchiq yo’l"
+ },
+ {
+  "id": "1-16",
+  "num": "1.16",
+  "cat": "warning",
+  "file": "1-16.gif",
+  "en": "Rough road",
+  "ru": "Неровная дорога",
+  "uz": "Notekis yo’l"
+ },
+ {
+  "id": "1-17",
+  "num": "1.17",
+  "cat": "warning",
+  "file": "1-17.gif",
+  "en": "Gravel release",
+  "ru": "Выброс гравия",
+  "uz": "Tosh otilish xavfi"
+ },
+ {
+  "id": "1-18-1",
+  "num": "1.18.1",
+  "cat": "warning",
+  "file": "1-18-1.gif",
+  "en": "Road narrows",
+  "ru": "Сужение дороги",
+  "uz": "Yo’lning torayishi"
+ },
+ {
+  "id": "1-18-2",
+  "num": "1.18.2",
+  "cat": "warning",
+  "file": "1-18-2.gif",
+  "en": "Road narrows",
+  "ru": "Сужение дороги",
+  "uz": "Yo’lning torayishi"
+ },
+ {
+  "id": "1-18-3",
+  "num": "1.18.3",
+  "cat": "warning",
+  "file": "1-18-3.gif",
+  "en": "Road narrows",
+  "ru": "Сужение дороги",
+  "uz": "Yo’lning torayishi"
+ },
+ {
+  "id": "1-19",
+  "num": "1.19",
+  "cat": "warning",
+  "file": "1-19.gif",
+  "en": "Two way traffic",
+  "ru": "Двустороннее движение",
+  "uz": "Ikki tomonlama harakatlanish"
+ },
+ {
+  "id": "1-20",
+  "num": "1.20",
+  "cat": "warning",
+  "file": "1-20.gif",
+  "en": "Crosswalk",
+  "ru": "Пешеходный переход",
+  "uz": "Piyodalar o’tish joyi"
+ },
+ {
+  "id": "1-21",
+  "num": "1.21",
+  "cat": "warning",
+  "file": "1-21.gif",
+  "en": "Children",
+  "ru": "Дети",
+  "uz": "Bolalar"
+ },
+ {
+  "id": "1-22",
+  "num": "1.22",
+  "cat": "warning",
+  "file": "1-22.gif",
+  "en": "Intersection with a bike path",
+  "ru": "Пересечение с велосипедной дорожкой",
+  "uz": "Velosiped yo’lkasi bilan kesishuv"
+ },
+ {
+  "id": "1-23",
+  "num": "1.23",
+  "cat": "warning",
+  "file": "1-23.gif",
+  "en": "Road repairment",
+  "ru": "Дорожные работы",
+  "uz": "Ta’mirlash ishlari"
+ },
+ {
+  "id": "1-24",
+  "num": "1.24",
+  "cat": "warning",
+  "file": "1-24.gif",
+  "en": "Cattle drive",
+  "ru": "Перегон скота",
+  "uz": "Mol haydab o’tish"
+ },
+ {
+  "id": "1-25",
+  "num": "1.25",
+  "cat": "warning",
+  "file": "1-25.gif",
+  "en": "Wild animals",
+  "ru": "Дикие животные",
+  "uz": "Yovvoyi hayvonlar"
+ },
+ {
+  "id": "1-26",
+  "num": "1.26",
+  "cat": "warning",
+  "file": "1-26.gif",
+  "en": "Falling stones",
+  "ru": "Падение камней",
+  "uz": "Toshlar tushishi"
+ },
+ {
+  "id": "1-27",
+  "num": "1.27",
+  "cat": "warning",
+  "file": "1-27.gif",
+  "en": "Side wind",
+  "ru": "Боковой ветер",
+  "uz": "Yonlama shamol"
+ },
+ {
+  "id": "1-28",
+  "num": "1.28",
+  "cat": "warning",
+  "file": "1-28.gif",
+  "en": "Low-flying airplane",
+  "ru": "Низколетящие самолеты",
+  "uz": "Pastlab uchuvchi samolyotlar"
+ },
+ {
+  "id": "1-29",
+  "num": "1.29",
+  "cat": "warning",
+  "file": "1-29.gif",
+  "en": "Tunnel",
+  "ru": "Тоннель",
+  "uz": "Tonnel"
+ },
+ {
+  "id": "1-30",
+  "num": "1.30",
+  "cat": "warning",
+  "file": "1-30.gif",
+  "en": "Other danger",
+  "ru": "Прочие опасности",
+  "uz": "Boshqa xavf-xatar"
+ },
+ {
+  "id": "1-31",
+  "num": "1.31",
+  "cat": "warning",
+  "file": "1-31.png",
+  "en": "Artificial road irregularities",
+  "ru": "Искусственные дорожные не ровности",
+  "uz": "Sun'iy yo'l notekisliklari"
+ },
+ {
+  "id": "1-31-1",
+  "num": "1.31.1",
+  "cat": "warning",
+  "file": "1-31-1.gif",
+  "en": "Direction of bending",
+  "ru": "Направление поворота",
+  "uz": "Burilishning yo’nalishi"
+ },
+ {
+  "id": "1-31-2",
+  "num": "1.31.2",
+  "cat": "warning",
+  "file": "1-31-2.gif",
+  "en": "Direction of bending",
+  "ru": "Направление поворота",
+  "uz": "Burilishning yo’nalishi"
+ },
+ {
+  "id": "1-31-3",
+  "num": "1.31.3",
+  "cat": "warning",
+  "file": "1-31-3.gif",
+  "en": "Direction of bending",
+  "ru": "Направление поворота",
+  "uz": "Burilishning yo’nalishi"
+ },
+ {
+  "id": "1-32",
+  "num": "1.32",
+  "cat": "warning",
+  "file": "1-32.gif",
+  "en": "Traffic jam",
+  "ru": "Затор",
+  "uz": "Tirbandlik"
+ },
+ {
+  "id": "2-1",
+  "num": "2.1",
+  "cat": "priority",
+  "file": "2-1.gif",
+  "en": "Main road",
+  "ru": "Главная дорога",
+  "uz": ". Asosiy yo’l"
+ },
+ {
+  "id": "2-2",
+  "num": "2.2",
+  "cat": "priority",
+  "file": "2-2.gif",
+  "en": "The end of the main road",
+  "ru": "Конец главной дороги",
+  "uz": ". Asosiy yo’lning oxiri"
+ },
+ {
+  "id": "2-3-1",
+  "num": "2.3.1",
+  "cat": "priority",
+  "file": "2-3-1.png",
+  "en": "Crossing a secondary road",
+  "ru": "Пересечение со второстепенной дорогой",
+  "uz": ". Ikkinchi darajali yo’l bilan kesishuv"
+ },
+ {
+  "id": "2-3-2",
+  "num": "2.3.2",
+  "cat": "priority",
+  "file": "2-3-2.png",
+  "en": "Junction of secondary road",
+  "ru": "Примыкание второстепенной дороги",
+  "uz": "– tutashuv o’ngdan"
+ },
+ {
+  "id": "2-3-3",
+  "num": "2.3.3",
+  "cat": "priority",
+  "file": "2-3-3.png",
+  "en": "Junction of secondary road",
+  "ru": "Примыкание второстепенной дороги",
+  "uz": "– tutashuv chapdan"
+ },
+ {
+  "id": "2-4",
+  "num": "2.4",
+  "cat": "priority",
+  "file": "2-4.gif",
+  "en": "Give way",
+  "ru": ". Уступите дорогу",
+  "uz": "Yo’l bering"
+ },
+ {
+  "id": "2-5",
+  "num": "2.5",
+  "cat": "priority",
+  "file": "2-5.gif",
+  "en": "Movement without stopping is prohibited",
+  "ru": "Движение без остановки запрещено",
+  "uz": "To’xtamasdan harakatlanish taqiqlangan"
+ },
+ {
+  "id": "2-6",
+  "num": "2.6",
+  "cat": "priority",
+  "file": "2-6.gif",
+  "en": "Advantage of oncoming traffic",
+  "ru": "Преимущество встречного движения",
+  "uz": "Ro’para harakatlanishning ustunligi"
+ },
+ {
+  "id": "2-7",
+  "num": "2.7",
+  "cat": "priority",
+  "file": "2-7.gif",
+  "en": "Advantage over oncoming traffic",
+  "ru": "Преимущество перед встречным движением",
+  "uz": "Ro’paradagi harakatlanishga nisbatan imtiyoz"
+ },
+ {
+  "id": "3-1",
+  "num": "3.1",
+  "cat": "prohibitory",
+  "file": "3-1.gif",
+  "en": "No entry",
+  "ru": "Въезд запрещен",
+  "uz": "Kirish ta'qiqlangan"
+ },
+ {
+  "id": "3-2",
+  "num": "3.2",
+  "cat": "prohibitory",
+  "file": "3-2.gif",
+  "en": "No movement",
+  "ru": "Движение запрещено",
+  "uz": ". Harakatlanish ta'qiqlangan"
+ },
+ {
+  "id": "3-3",
+  "num": "3.3",
+  "cat": "prohibitory",
+  "file": "3-3.gif",
+  "en": "Movement of motor vehicles is prohibited",
+  "ru": "Движение механических транспортных средств запрещено",
+  "uz": ". Mexanik transport vositalarining harakatlanishi taqiqlangan"
+ },
+ {
+  "id": "3-4",
+  "num": "3.4",
+  "cat": "prohibitory",
+  "file": "3-4.png",
+  "en": "The movement of trucks is prohibited",
+  "ru": "Движение грузовых автомобилей запрещено",
+  "uz": ". Yuk avtomobillarining harakatlanishi taqiqlangan"
+ },
+ {
+  "id": "3-5",
+  "num": "3.5",
+  "cat": "prohibitory",
+  "file": "3-5.gif",
+  "en": "The movement of motorcycles is prohibited",
+  "ru": "Движение мотоциклов запрещено",
+  "uz": ". Mototsikllar harakatlanishi taqiqlangan"
+ },
+ {
+  "id": "3-6",
+  "num": "3.6",
+  "cat": "prohibitory",
+  "file": "3-6.gif",
+  "en": "The movement of tractors is prohibited",
+  "ru": "Движение тракторов запрещено",
+  "uz": "Traktorlar harakatlanishi taqiqlangan"
+ },
+ {
+  "id": "3-7",
+  "num": "3.7",
+  "cat": "prohibitory",
+  "file": "3-7.gif",
+  "en": "Driving with a trailer is prohibited",
+  "ru": "Движение с прицепом запрещено",
+  "uz": "Tirkama bilan harakatlanish taqiqlangan"
+ },
+ {
+  "id": "3-8",
+  "num": "3.8",
+  "cat": "prohibitory",
+  "file": "3-8.gif",
+  "en": "Movement of horse-drawn carts is prohibited",
+  "ru": "Движение гужевых повозок запрещено",
+  "uz": "Ot-arava harakatlanishi taqiqlangan"
+ },
+ {
+  "id": "3-9",
+  "num": "3.9",
+  "cat": "prohibitory",
+  "file": "3-9.gif",
+  "en": "Cycling prohibited",
+  "ru": "Движение на велосипедах запрещено",
+  "uz": "Velosipedda harakatlanish ta'qiqlangan"
+ },
+ {
+  "id": "3-10",
+  "num": "3.10",
+  "cat": "prohibitory",
+  "file": "3-10.png",
+  "en": "No pedestrians",
+  "ru": "Движение пешеходов запрещено",
+  "uz": "Piyodalarning harakatlanishi ta'qiqlangan"
+ },
+ {
+  "id": "3-11",
+  "num": "3.11",
+  "cat": "prohibitory",
+  "file": "3-11.gif",
+  "en": "Mass limitation",
+  "ru": "Ограничение массы",
+  "uz": "Vazn cheklangan"
+ },
+ {
+  "id": "3-12",
+  "num": "3.12",
+  "cat": "prohibitory",
+  "file": "3-12.gif",
+  "en": "Axle load limit",
+  "ru": "Ограничение нагрузки на ось",
+  "uz": "O‘qqa tushadigan og‘irlik cheklangan"
+ },
+ {
+  "id": "3-13",
+  "num": "3.13",
+  "cat": "prohibitory",
+  "file": "3-13.gif",
+  "en": "Height restriction",
+  "ru": "Ограничение высоты",
+  "uz": "Cheklangan balandlik"
+ },
+ {
+  "id": "3-14",
+  "num": "3.14",
+  "cat": "prohibitory",
+  "file": "3-14.gif",
+  "en": "Width restriction",
+  "ru": "Ограничение ширины",
+  "uz": "Cheklangan kenglik"
+ },
+ {
+  "id": "3-15",
+  "num": "3.15",
+  "cat": "prohibitory",
+  "file": "3-15.gif",
+  "en": "Length restriction",
+  "ru": "Ограничение длины",
+  "uz": "Cheklangan uzunlik"
+ },
+ {
+  "id": "3-16",
+  "num": "3.16",
+  "cat": "prohibitory",
+  "file": "3-16.gif",
+  "en": "Minimum distance limit",
+  "ru": "Ограничение минимальной дистанции",
+  "uz": "Eng kam oraliq"
+ },
+ {
+  "id": "3-17-1",
+  "num": "3.17.1",
+  "cat": "prohibitory",
+  "file": "3-17-1.png",
+  "en": "Custom house",
+  "ru": "Таможня",
+  "uz": "Bojxona"
+ },
+ {
+  "id": "3-17-2",
+  "num": "3.17.2",
+  "cat": "prohibitory",
+  "file": "3-17-2.png",
+  "en": "Danger",
+  "ru": "Опасность",
+  "uz": "Xavf-xatar"
+ },
+ {
+  "id": "3-18-1",
+  "num": "3.18.1",
+  "cat": "prohibitory",
+  "file": "3-18-1.gif",
+  "en": "No right turn",
+  "ru": "Поворот направо запрещен",
+  "uz": "O’ngga burilish ta'qiqlanadi"
+ },
+ {
+  "id": "3-18-2",
+  "num": "3.18.2",
+  "cat": "prohibitory",
+  "file": "3-18-2.gif",
+  "en": "No left turn",
+  "ru": "Поворот налево запрещен",
+  "uz": "Chapga burilish taqiqlanadi"
+ },
+ {
+  "id": "3-19",
+  "num": "3.19",
+  "cat": "prohibitory",
+  "file": "3-19.gif",
+  "en": "Reversal prohibited",
+  "ru": "Разворот запрещен",
+  "uz": ". Qayrilish ta'qiqlanadi"
+ },
+ {
+  "id": "3-20",
+  "num": "3.20",
+  "cat": "prohibitory",
+  "file": "3-20.gif",
+  "en": "No passing",
+  "ru": "Обгон запрещен",
+  "uz": "Quvib o’tish taqiqlanadi"
+ },
+ {
+  "id": "3-21",
+  "num": "3.21",
+  "cat": "prohibitory",
+  "file": "3-21.gif",
+  "en": "End of no passing zone",
+  "ru": "Конец зоны запрещения обгона",
+  "uz": "Quvib o’tish ta'qiqlangan hududning oxiri"
+ },
+ {
+  "id": "3-22",
+  "num": "3.22",
+  "cat": "prohibitory",
+  "file": "3-22.gif",
+  "en": "Overtaking by trucks is prohibited",
+  "ru": "Обгон грузовым автомобилям запрещен",
+  "uz": "Yuk avtomobillarida quvib o’tish taqiqlangan"
+ },
+ {
+  "id": "3-23",
+  "num": "3.23",
+  "cat": "prohibitory",
+  "file": "3-23.gif",
+  "en": "End of prohibition of overtaking by trucks zone",
+  "ru": "Конец зоны запрещения обгона грузовым автомобилям",
+  "uz": "Yuk avtommobillarida quvib o’tish taqiqlangan hududning oxiri"
+ },
+ {
+  "id": "3-24",
+  "num": "3.24",
+  "cat": "prohibitory",
+  "file": "3-24.gif",
+  "en": "Maximum speed limit",
+  "ru": "Ограничение максимальной скорости1",
+  "uz": "Yuqori tezlik cheklangan"
+ },
+ {
+  "id": "3-25",
+  "num": "3.25",
+  "cat": "prohibitory",
+  "file": "3-25.gif",
+  "en": "End of the zone with maximum speed limit",
+  "ru": "Конец зоны ограничения максимальной скорости",
+  "uz": "Yuqori tezlik cheklangan hududning oxiri"
+ },
+ {
+  "id": "3-26",
+  "num": "3.26",
+  "cat": "prohibitory",
+  "file": "3-26.gif",
+  "en": "The sound signal is prohibited",
+  "ru": "Подача звукового сигнала запрещена",
+  "uz": "Tovuch moslamalaridan foydalanish ta'qiqlangan"
+ },
+ {
+  "id": "3-27",
+  "num": "3.27",
+  "cat": "prohibitory",
+  "file": "3-27.gif",
+  "en": "Stop prohibited",
+  "ru": "Остановка запрещена",
+  "uz": "To’xtash taqiqlangan"
+ },
+ {
+  "id": "3-28",
+  "num": "3.28",
+  "cat": "prohibitory",
+  "file": "3-28.gif",
+  "en": "No parking",
+  "ru": "Стоянка запрещена",
+  "uz": "To’xtab turish ta'qiqlangan"
+ },
+ {
+  "id": "3-29",
+  "num": "3.29",
+  "cat": "prohibitory",
+  "file": "3-29.gif",
+  "en": "Parking is prohibited on odd days of the month",
+  "ru": "Стоянка запрещена по нечетным числам месяца",
+  "uz": "Oyning toq kunlarida to’xtab turish taqiqlanadi"
+ },
+ {
+  "id": "3-30",
+  "num": "3.30",
+  "cat": "prohibitory",
+  "file": "3-30.gif",
+  "en": "Parking is prohibited on even days of the month",
+  "ru": "Стоянка запрещена по четным числам месяца",
+  "uz": "Oyning juft kunlarida to’xtab turish taqiqlanadi"
+ },
+ {
+  "id": "3-31",
+  "num": "3.31",
+  "cat": "prohibitory",
+  "file": "3-31.gif",
+  "en": "End of all restrictions zone",
+  "ru": "Конец зоны всех ограничений",
+  "uz": "Barcha cheklovlarning oxiri"
+ },
+ {
+  "id": "3-32",
+  "num": "3.32",
+  "cat": "prohibitory",
+  "file": "3-32.gif",
+  "en": "The movement of vehicles with dangerous goods is prohibited",
+  "ru": "Движение транспортных средств с опасным грузом запрещено",
+  "uz": "Xavfli yuklarga ega transport vositalarining harakati ta'qiqlanadi"
+ },
+ {
+  "id": "3-33",
+  "num": "3.33",
+  "cat": "prohibitory",
+  "file": "3-33.gif",
+  "en": "The movement of vehicles with explosive and flammable goods is prohibited",
+  "ru": "Движение транспортных средств с взрывчатыми и легковоспламеняющимися грузами запрещено",
+  "uz": "Portlovchi va yonuvchan yuklarga ega transport vositalarining harakatlanishi ta'qiqlanadi"
+ },
+ {
+  "id": "4-1-1",
+  "num": "4.1.1",
+  "cat": "mandatory",
+  "file": "4-1-1.gif",
+  "en": "Go straight",
+  "ru": "Движение прямо",
+  "uz": "Harakatlanish to’g’riga"
+ },
+ {
+  "id": "4-1-2",
+  "num": "4.1.2",
+  "cat": "mandatory",
+  "file": "4-1-2.gif",
+  "en": "Movement to the right",
+  "ru": "Движение направо",
+  "uz": "Harakatlanish o’ngga"
+ },
+ {
+  "id": "4-1-3",
+  "num": "4.1.3",
+  "cat": "mandatory",
+  "file": "4-1-3.gif",
+  "en": "Movement to the left",
+  "ru": "Движение налево",
+  "uz": "Harakatlanish chapga"
+ },
+ {
+  "id": "4-1-4",
+  "num": "4.1.4",
+  "cat": "mandatory",
+  "file": "4-1-4.gif",
+  "en": "Movement to the right or straight",
+  "ru": "Движение прямо или направо",
+  "uz": "Harakatlanish to’g’riga yoki o’ngga"
+ },
+ {
+  "id": "4-1-5",
+  "num": "4.1.5",
+  "cat": "mandatory",
+  "file": "4-1-5.gif",
+  "en": "Movement to the left or straight",
+  "ru": "Движение прямо или налево",
+  "uz": "Harakatlanish to’g’riga yoki chapga"
+ },
+ {
+  "id": "4-1-6",
+  "num": "4.1.6",
+  "cat": "mandatory",
+  "file": "4-1-6.gif",
+  "en": "Movement to the right or left",
+  "ru": "Движение направо или налево",
+  "uz": "Harakatlanish o’ngga yoki chapga"
+ },
+ {
+  "id": "4-2-1",
+  "num": "4.2.1",
+  "cat": "mandatory",
+  "file": "4-2-1.gif",
+  "en": "Obstacle on the right",
+  "ru": "Объезд препятствия справа",
+  "uz": "To’siqni o’ngdan chetlab o’tish"
+ },
+ {
+  "id": "4-2-2",
+  "num": "4.2.2",
+  "cat": "mandatory",
+  "file": "4-2-2.gif",
+  "en": "Obstacle on the left",
+  "ru": "Объезд препятствия слева",
+  "uz": "To’siqni chapdan chetlab o’tish"
+ },
+ {
+  "id": "4-2-3",
+  "num": "4.2.3",
+  "cat": "mandatory",
+  "file": "4-2-3.gif",
+  "en": "Obstacle on the right or left",
+  "ru": "Объезд препятствия справа или слева",
+  "uz": "To’siqni o’ngdan yoki chapdan chetlab o’tish"
+ },
+ {
+  "id": "4-3",
+  "num": "4.3",
+  "cat": "mandatory",
+  "file": "4-3.gif",
+  "en": "Circular motion",
+  "ru": "Круговое движение",
+  "uz": "Aylanma harakatlanish"
+ },
+ {
+  "id": "4-4",
+  "num": "4.4",
+  "cat": "mandatory",
+  "file": "4-4.gif",
+  "en": "The movement of passenger cars",
+  "ru": "Движение легковых автомобилей",
+  "uz": "Yengil avtomobillar harakatlanadi"
+ },
+ {
+  "id": "4-5",
+  "num": "4.5",
+  "cat": "mandatory",
+  "file": "4-5.gif",
+  "en": "Bicycle path",
+  "ru": "Велосипедная дорожка",
+  "uz": "Velosiped yo’lkasi"
+ },
+ {
+  "id": "4-6",
+  "num": "4.6",
+  "cat": "mandatory",
+  "file": "4-6.gif",
+  "en": "Footpath",
+  "ru": "Пешеходная дорожка",
+  "uz": "Piyodalar yo’lkasi"
+ },
+ {
+  "id": "4-6-1",
+  "num": "4.6.1",
+  "cat": "mandatory",
+  "file": "4-6-1.jpg",
+  "en": "Pedestrian and cycling track with combined traffic",
+  "ru": "Пешеходная и велосипедная дорожка с совмещенным движением",
+  "uz": "Piyoda va velosipedlar birgalikda harakatlanish yo'li"
+ },
+ {
+  "id": "4-6-2",
+  "num": "4.6.2",
+  "cat": "mandatory",
+  "file": "4-6-2.jpg",
+  "en": "End of pedestrian and cycling track with combined traffic",
+  "ru": "Конец пешеходной и велосипедной дорожки с совмещенным движением",
+  "uz": "Piyoda va velosipedlar birgalikda harakatlanish yo'li oxiri"
+ },
+ {
+  "id": "4-6-3",
+  "num": "4.6.3",
+  "cat": "mandatory",
+  "file": "4-6-3.jpg",
+  "en": "Pedestrian and cycle path with traffic separation",
+  "ru": "Пешеходная и велосипедная дорожка с разделением движения",
+  "uz": "Ajratilgan piyoda va velosiped harakatlanish yo'li"
+ },
+ {
+  "id": "4-6-4",
+  "num": "4.6.4",
+  "cat": "mandatory",
+  "file": "4-6-4.jpg",
+  "en": "End of pedestrian and cycle path with traffic separation",
+  "ru": "Конец пешеходной и велосипедной дорожки с разделением движения",
+  "uz": "Ajratilgan piyoda va velosiped harakatlanish yo'li oxiri"
+ },
+ {
+  "id": "4-6-5",
+  "num": "4.6.5",
+  "cat": "mandatory",
+  "file": "4-6-5.jpg",
+  "en": "Pedestrian and cycle path with traffic separation",
+  "ru": "Пешеходная и велосипедная дорожка с разделением движения",
+  "uz": "Ajratilgan piyoda va velosiped harakatlanish yo'li"
+ },
+ {
+  "id": "4-6-6",
+  "num": "4.6.6",
+  "cat": "mandatory",
+  "file": "4-6-6.jpg",
+  "en": "End of pedestrian and cycle path with traffic separation",
+  "ru": "Конец пешеходной и велосипедной дорожки с разделением движения",
+  "uz": "Ajratilgan piyoda va velosiped harakatlanish yo'li oxiri"
+ },
+ {
+  "id": "4-7",
+  "num": "4.7",
+  "cat": "mandatory",
+  "file": "4-7.gif",
+  "en": "Minimum speed limit",
+  "ru": "Ограничение минимальной скорости",
+  "uz": "Eng kam tezlik"
+ },
+ {
+  "id": "4-8",
+  "num": "4.8",
+  "cat": "mandatory",
+  "file": "4-8.gif",
+  "en": "End of minimum speed limit",
+  "ru": "Конец зоны ограничения минимальной скорости",
+  "uz": "Eng kam tezlik belgilangan yo’lning oxiri"
+ },
+ {
+  "id": "4-9-1",
+  "num": "4.9.1",
+  "cat": "mandatory",
+  "file": "4-9-1.gif",
+  "en": "Direction of movement of vehicles with dangerous goods",
+  "ru": "Направление движения транспортных средств  с опасными грузами",
+  "uz": "Transport vositalarining xavfli yuklar bilan harakatlanish yo'nalishi"
+ },
+ {
+  "id": "4-9-2",
+  "num": "4.9.2",
+  "cat": "mandatory",
+  "file": "4-9-2.gif",
+  "en": "Direction of movement of vehicles with dangerous goods",
+  "ru": "Направление движения транспортных средств  с опасными грузами",
+  "uz": "Transport vositalarining xavfli yuklar bilan harakatlanish yo'nalishi"
+ },
+ {
+  "id": "4-9-3",
+  "num": "4.9.3",
+  "cat": "mandatory",
+  "file": "4-9-3.gif",
+  "en": "Direction of movement of vehicles with dangerous goods",
+  "ru": "Направление движения транспортных средств  с опасными грузами",
+  "uz": "Transport vositalarining xavfli yuklar bilan harakatlanish yo'nalishi"
+ },
+ {
+  "id": "4-10",
+  "num": "4.10",
+  "cat": "mandatory",
+  "file": "4-10.gif",
+  "en": "Horse track. Riders only",
+  "ru": "Лошодная дорожка Движение только всадников",
+  "uz": "Otda yurish  yo'li"
+ },
+ {
+  "id": "5-1",
+  "num": "5.1",
+  "cat": "information",
+  "file": "5-1.gif",
+  "en": "Highway",
+  "ru": ". Автомагистраль",
+  "uz": "Avtomagistral"
+ },
+ {
+  "id": "5-2",
+  "num": "5.2",
+  "cat": "information",
+  "file": "5-2.gif",
+  "en": "End of highway",
+  "ru": "Конец автомагистрали",
+  "uz": "Avtomagistralning oxiri"
+ },
+ {
+  "id": "5-3",
+  "num": "5.3",
+  "cat": "information",
+  "file": "5-3.gif",
+  "en": "Road for cars",
+  "ru": "Дорога для автомобилей",
+  "uz": "Avtomobillar uchun mo’ljallangan yo’l"
+ },
+ {
+  "id": "5-4",
+  "num": "5.4",
+  "cat": "information",
+  "file": "5-4.gif",
+  "en": "End of the road for cars",
+  "ru": "Конец дороги для автомобилей",
+  "uz": "Avtomobillar uchun mo’ljallangan yo’lning oxiri"
+ },
+ {
+  "id": "5-5",
+  "num": "5.5",
+  "cat": "information",
+  "file": "5-5.gif",
+  "en": "One-way road",
+  "ru": "Дорога с односторонним движением",
+  "uz": "Bir tomonlama harakatlanish yo’li"
+ },
+ {
+  "id": "5-6",
+  "num": "5.6",
+  "cat": "information",
+  "file": "5-6.gif",
+  "en": "End of the one-way road",
+  "ru": "Конец дороги с односторонним движением",
+  "uz": "Bir tomonlama harakatlanish yo’lining oxiri"
+ },
+ {
+  "id": "5-7-1",
+  "num": "5.7.1",
+  "cat": "information",
+  "file": "5-7-1.gif",
+  "en": "Departure to one-way road",
+  "ru": "Выезд на дорогу с односторонним движением",
+  "uz": "Bir tomonlama harakatlanish yo’liga chiqish"
+ },
+ {
+  "id": "5-7-2",
+  "num": "5.7.2",
+  "cat": "information",
+  "file": "5-7-2.gif",
+  "en": "Departure to one-way road",
+  "ru": "Выезд на дорогу с односторонним движением",
+  "uz": "Bir tomonlama harakatlanish yo’liga chiqish"
+ },
+ {
+  "id": "5-8-1",
+  "num": "5.8.1",
+  "cat": "information",
+  "file": "5-8-1.gif",
+  "en": "Driving directions in lanes",
+  "ru": "Направления движения по полосам",
+  "uz": "Bo’laklar bo’yicha harakatlanish yo’nalishi"
+ },
+ {
+  "id": "5-8-2",
+  "num": "5.8.2",
+  "cat": "information",
+  "file": "5-8-2.png",
+  "en": "Driving directions in a lane",
+  "ru": "Направления движения по полосе",
+  "uz": "Bo’lak bo’yicha harakatlanish yo’nalishi"
+ },
+ {
+  "id": "5-8-2-2",
+  "num": "5.8.2",
+  "cat": "information",
+  "file": "5-8-2-2.png",
+  "en": "Driving directions in a lane",
+  "ru": "Направления движения по полосе",
+  "uz": "Bo’lak bo’yicha harakatlanish yo’nalishi"
+ },
+ {
+  "id": "5-8-2-3",
+  "num": "5.8.2",
+  "cat": "information",
+  "file": "5-8-2-3.png",
+  "en": "Driving directions in a lane",
+  "ru": "Направления движения по полосе",
+  "uz": "Bo’lak bo’yicha harakatlanish yo’nalishi"
+ },
+ {
+  "id": "5-8-2-4",
+  "num": "5.8.2",
+  "cat": "information",
+  "file": "5-8-2-4.png",
+  "en": "Driving directions in a lane",
+  "ru": "Направления движения по полосе",
+  "uz": "Bo’lak bo’yicha harakatlanish yo’nalishi"
+ },
+ {
+  "id": "5-8-3",
+  "num": "5.8.3",
+  "cat": "information",
+  "file": "5-8-3.gif",
+  "en": "Beginning of the strip",
+  "ru": "Начало полосы",
+  "uz": "Bo’lakning boshlanishi"
+ },
+ {
+  "id": "5-8-3-2",
+  "num": "5.8.3",
+  "cat": "information",
+  "file": "5-8-3-2.gif",
+  "en": "Beginning of the strip",
+  "ru": "Начало полосы",
+  "uz": "Bo’lakning boshlanishi"
+ },
+ {
+  "id": "5-8-4",
+  "num": "5.8.4",
+  "cat": "information",
+  "file": "5-8-4.gif",
+  "en": "Beginning of the strip",
+  "ru": "Начало полосы",
+  "uz": "Bo’lakning boshlanishi"
+ },
+ {
+  "id": "5-8-5",
+  "num": "5.8.5",
+  "cat": "information",
+  "file": "5-8-5.gif",
+  "en": "End of the strip",
+  "ru": "Конец полосы",
+  "uz": "Bo’lak oxiri"
+ },
+ {
+  "id": "5-8-6",
+  "num": "5.8.6",
+  "cat": "information",
+  "file": "5-8-6.gif",
+  "en": "End of the strip",
+  "ru": "Конец полосы",
+  "uz": "End of the strip"
+ },
+ {
+  "id": "5-8-7",
+  "num": "5.8.7",
+  "cat": "information",
+  "file": "5-8-7.gif",
+  "en": "Lane direction",
+  "ru": "Направление движения по полосам",
+  "uz": "Bo’laklar bo’yicha harakatlanish yo’nalishi"
+ },
+ {
+  "id": "5-8-7-2",
+  "num": "5.8.7",
+  "cat": "information",
+  "file": "5-8-7-2.gif",
+  "en": "Lane direction",
+  "ru": "Направление движения по полосам",
+  "uz": "Bo’laklar bo’yicha harakatlanish yo’nalishi"
+ },
+ {
+  "id": "5-8-8",
+  "num": "5.8.8",
+  "cat": "information",
+  "file": "5-8-8.gif",
+  "en": "Lane direction",
+  "ru": "Направление движения по полосам",
+  "uz": "Bo’laklar bo’yicha harakatlanish yo’nalishi"
+ },
+ {
+  "id": "5-8-9",
+  "num": "5.8.9",
+  "cat": "information",
+  "file": "5-8-9.png",
+  "en": "Number of lanes",
+  "ru": "Число полос",
+  "uz": "Bo’laklar soni"
+ },
+ {
+  "id": "5-9",
+  "num": "5.9",
+  "cat": "information",
+  "file": "5-9.gif",
+  "en": "Strip for route vehicles",
+  "ru": "Полоса для маршрутных транспортных средств",
+  "uz": "Belgilangan yo’nalishli transport vositalari uchun mo’ljallangan bo’lak"
+ },
+ {
+  "id": "5-10-1",
+  "num": "5.10.1",
+  "cat": "information",
+  "file": "5-10-1.gif",
+  "en": "Road with a strip for route vehicles",
+  "ru": "Дорога с полосой для маршрутных транспортных средств",
+  "uz": "Belgilangan yo’nalishli transport vositalari uchun bo’lagi bor yo’l"
+ },
+ {
+  "id": "5-10-2",
+  "num": "5.10.2",
+  "cat": "information",
+  "file": "5-10-2.gif",
+  "en": "Departure on the road with a strip for route vehicles",
+  "ru": "Выезд на дорогу с полосой для маршрутных транспортных средств",
+  "uz": "Belgilangan yo’nalishli transport vositalari uchun bo’lagi bor yo’l"
+ },
+ {
+  "id": "5-10-3",
+  "num": "5.10.3",
+  "cat": "information",
+  "file": "5-10-3.gif",
+  "en": "Departure on the road with a strip for route vehicles",
+  "ru": "Выезд на дорогу с полосой для маршрутных транспортных средств",
+  "uz": "Belgilangan yo’nalishli transport vositalari uchun bo’lagi bor yo’l"
+ },
+ {
+  "id": "5-10-4",
+  "num": "5.10.4",
+  "cat": "information",
+  "file": "5-10-4.gif",
+  "en": "End of the road with a strip for route vehicles",
+  "ru": "Конец дороги с полосой для маршрутных транспортных средств",
+  "uz": "Belgilangan yo’nalishli transport vositalari uchun bo’lagi bor yo’lning oxiri"
+ },
+ {
+  "id": "5-11-1",
+  "num": "5.11.1",
+  "cat": "information",
+  "file": "5-11-1.gif",
+  "en": "Place to turn",
+  "ru": "Место для разворота",
+  "uz": "Qayirilish joyi"
+ },
+ {
+  "id": "5-11-2",
+  "num": "5.11.2",
+  "cat": "information",
+  "file": "5-11-2.gif",
+  "en": "Turning zone",
+  "ru": "Зона для разворота",
+  "uz": "Qayirilish oralig’i"
+ },
+ {
+  "id": "5-12",
+  "num": "5.12",
+  "cat": "information",
+  "file": "5-12.gif",
+  "en": "Bus and / or trolley stop",
+  "ru": "Место остановки автобуса и (или) троллейбуса",
+  "uz": "Avtobus va trolleybus to’xtash joyi"
+ },
+ {
+  "id": "5-13",
+  "num": "5.13",
+  "cat": "information",
+  "file": "5-13.gif",
+  "en": "Tram stop",
+  "ru": "Место остановки трамвая",
+  "uz": "Tramvay to’xtash joyi"
+ },
+ {
+  "id": "5-14",
+  "num": "5.14",
+  "cat": "information",
+  "file": "5-14.gif",
+  "en": "Parking place for the passenger taxi",
+  "ru": "Место стоянки легковых такси",
+  "uz": "Taksi to’xtab turish joyi"
+ },
+ {
+  "id": "5-15",
+  "num": "5.15",
+  "cat": "information",
+  "file": "5-15.gif",
+  "en": "Parking place",
+  "ru": "Место стоянки",
+  "uz": "To’xtab turish joyi"
+ },
+ {
+  "id": "5-16-1",
+  "num": "5.16.1",
+  "cat": "information",
+  "file": "5-16-1.gif",
+  "en": "Crosswalk",
+  "ru": "Пешеходный переход",
+  "uz": "Piyodalar o’tish joyi"
+ },
+ {
+  "id": "5-16-2",
+  "num": "5.16.2",
+  "cat": "information",
+  "file": "5-16-2.gif",
+  "en": "Crosswalk",
+  "ru": "Пешеходный переход",
+  "uz": "Piyodalar o’tish joyi"
+ },
+ {
+  "id": "5-17-1",
+  "num": "5.17.1",
+  "cat": "information",
+  "file": "5-17-1.gif",
+  "en": "Underground pedestrian crossing",
+  "ru": "Подземный пешеходный переход",
+  "uz": "Piyodalarning yer ostidan o’tish joyi"
+ },
+ {
+  "id": "5-17-2",
+  "num": "5.17.2",
+  "cat": "information",
+  "file": "5-17-2.gif",
+  "en": "Underground pedestrian crossing",
+  "ru": "Подземный пешеходный переход",
+  "uz": "Piyodalarning yer ostidan o’tish joyi"
+ },
+ {
+  "id": "5-17-3",
+  "num": "5.17.3",
+  "cat": "information",
+  "file": "5-17-3.gif",
+  "en": "Pedestrian overpass",
+  "ru": "Надземный пешеходный переход",
+  "uz": "Piyodalarning yer ustidan o’tish joyi"
+ },
+ {
+  "id": "5-17-4",
+  "num": "5.17.4",
+  "cat": "information",
+  "file": "5-17-4.gif",
+  "en": "Pedestrian overpass",
+  "ru": "Надземный пешеходный переход",
+  "uz": "Piyodalarning yer ustidan o’tish joyi"
+ },
+ {
+  "id": "5-18",
+  "num": "5.18",
+  "cat": "information",
+  "file": "5-18.gif",
+  "en": "Recommended speed",
+  "ru": "Рекомендуемая скорость",
+  "uz": "Tavsiya etilgan tezlik"
+ },
+ {
+  "id": "5-19-1",
+  "num": "5.19.1",
+  "cat": "information",
+  "file": "5-19-1.gif",
+  "en": "Dead end",
+  "ru": "Тупик",
+  "uz": "Oxiri berk yo’l, ko’cha"
+ },
+ {
+  "id": "5-19-2",
+  "num": "5.19.2",
+  "cat": "information",
+  "file": "5-19-2.gif",
+  "en": "Dead end",
+  "ru": "Тупик",
+  "uz": "Oxiri berk yo’l, ko’cha"
+ },
+ {
+  "id": "5-19-3",
+  "num": "5.19.3",
+  "cat": "information",
+  "file": "5-19-3.gif",
+  "en": "Dead end",
+  "ru": "Тупик",
+  "uz": "Oxiri berk yo’l, ko’cha"
+ },
+ {
+  "id": "5-20-1",
+  "num": "5.20.1",
+  "cat": "information",
+  "file": "5-20-1.jpg",
+  "en": "Advance direction index",
+  "ru": "Предварительный указатель направлений",
+  "uz": "Yo’nalishlarning dastlabki ko’rsatkichi"
+ },
+ {
+  "id": "5-20-1-2",
+  "num": "5.20.1",
+  "cat": "information",
+  "file": "5-20-1-2.jpg",
+  "en": "Advance direction index",
+  "ru": "Предварительный указатель направлений",
+  "uz": "Yo’nalishlarning dastlabki ko’rsatkichi"
+ },
+ {
+  "id": "5-20-1-3",
+  "num": "5.20.1",
+  "cat": "information",
+  "file": "5-20-1-3.jpg",
+  "en": "Advance direction index",
+  "ru": "Предварительный указатель направлений",
+  "uz": "Yo’nalishlarning dastlabki ko’rsatkichi"
+ },
+ {
+  "id": "5-20-2",
+  "num": "5.20.2",
+  "cat": "information",
+  "file": "5-20-2.jpg",
+  "en": "Advance direction index",
+  "ru": "Предварительный указатель направлений",
+  "uz": "Yo’nalishlarning dastlabki ko’rsatkichi"
+ },
+ {
+  "id": "5-20-3",
+  "num": "5.20.3",
+  "cat": "information",
+  "file": "5-20-3.gif",
+  "en": "Movement pattern",
+  "ru": "Схема движения",
+  "uz": "Harakatlanish tasviri"
+ },
+ {
+  "id": "5-21-1",
+  "num": "5.21.1",
+  "cat": "information",
+  "file": "5-21-1.jpg",
+  "en": "Direction indicator",
+  "ru": "Указатель направления",
+  "uz": "Yo’nalish ko’rsatkichi"
+ },
+ {
+  "id": "5-21-2",
+  "num": "5.21.2",
+  "cat": "information",
+  "file": "5-21-2.jpg",
+  "en": "Directions indicator",
+  "ru": "Указатель направлений",
+  "uz": "Yo’nalishlar ko’rsatkichi"
+ },
+ {
+  "id": "5-22",
+  "num": "5.22",
+  "cat": "information",
+  "file": "5-22.jpg",
+  "en": "The beginning of the settlement",
+  "ru": "Начало населенного пункта",
+  "uz": "Aholi yashaydigan joyning boshlanishi"
+ },
+ {
+  "id": "5-23",
+  "num": "5.23",
+  "cat": "information",
+  "file": "5-23.jpg",
+  "en": "The end of the settlement",
+  "ru": "Конец населенного пункта",
+  "uz": "Aholi yashaydigan joyning oxiri"
+ },
+ {
+  "id": "5-24",
+  "num": "5.24",
+  "cat": "information",
+  "file": "5-24.jpg",
+  "en": "The beginning of the settlement",
+  "ru": "Начало населенного пункта",
+  "uz": "Aholi yashaydigan joyning boshlanishi"
+ },
+ {
+  "id": "5-25",
+  "num": "5.25",
+  "cat": "information",
+  "file": "5-25.jpg",
+  "en": "The end of the settlement",
+  "ru": "Конец населенного пункта",
+  "uz": "Aholi yashaydigan joyning oxiri"
+ },
+ {
+  "id": "5-26",
+  "num": "5.26",
+  "cat": "information",
+  "file": "5-26.jpg",
+  "en": "Object name",
+  "ru": "Наименование объекта",
+  "uz": "Manzil nomi"
+ },
+ {
+  "id": "5-27",
+  "num": "5.27",
+  "cat": "information",
+  "file": "5-27.jpg",
+  "en": "Distance indicator",
+  "ru": "Указатель расстояний",
+  "uz": "Masofalar ko’rsatkichi"
+ },
+ {
+  "id": "5-28",
+  "num": "5.28",
+  "cat": "information",
+  "file": "5-28.png",
+  "en": "Kilometer mark",
+  "ru": "Километровый знак",
+  "uz": "Kilometr belgisi"
+ },
+ {
+  "id": "5-29-1",
+  "num": "5.29.1",
+  "cat": "information",
+  "file": "5-29-1.jpg",
+  "en": "Route number",
+  "ru": "Номер маршрута",
+  "uz": "Yo’l raqami"
+ },
+ {
+  "id": "5-29-2",
+  "num": "5.29.2",
+  "cat": "information",
+  "file": "5-29-2.png",
+  "en": "Route number",
+  "ru": "Номер маршрута",
+  "uz": "Yo’l raqami"
+ },
+ {
+  "id": "5-29-2-2",
+  "num": "5.29.2",
+  "cat": "information",
+  "file": "5-29-2-2.png",
+  "en": "Route number",
+  "ru": "Номер маршрута",
+  "uz": "Yo’l raqami"
+ },
+ {
+  "id": "5-29-2-3",
+  "num": "5.29.2",
+  "cat": "information",
+  "file": "5-29-2-3.png",
+  "en": "Route number",
+  "ru": "Номер маршрута",
+  "uz": "Yo’l raqami"
+ },
+ {
+  "id": "5-30-1",
+  "num": "5.30.1",
+  "cat": "information",
+  "file": "5-30-1.gif",
+  "en": "Driving direction for trucks",
+  "ru": "Направление движения для грузовых автомобилей",
+  "uz": "Yuk avtomobillari uchun harakatlanish yo’nalishi"
+ },
+ {
+  "id": "5-30-2",
+  "num": "5.30.2",
+  "cat": "information",
+  "file": "5-30-2.gif",
+  "en": "Driving direction for trucks",
+  "ru": "Направление движения для грузовых автомобилей",
+  "uz": "Yuk avtomobillari uchun harakatlanish yo’nalishi"
+ },
+ {
+  "id": "5-20-3-2",
+  "num": "5.20.3",
+  "cat": "information",
+  "file": "5-20-3-2.gif",
+  "en": "Driving direction for trucks",
+  "ru": "Схема движения",
+  "uz": "Harakatlanish tasviri"
+ },
+ {
+  "id": "5-31",
+  "num": "5.31",
+  "cat": "information",
+  "file": "5-31.jpg",
+  "en": "Detour circuit",
+  "ru": "Схема объезда",
+  "uz": ". Aylanib o’tish tasviri"
+ },
+ {
+  "id": "5-32-1",
+  "num": "5.32.1",
+  "cat": "information",
+  "file": "5-32-1.jpg",
+  "en": "Direction of the detour",
+  "ru": "Направление объезда",
+  "uz": "Chetlab o’tish yo’nalishi"
+ },
+ {
+  "id": "5-32-2",
+  "num": "5.32.2",
+  "cat": "information",
+  "file": "5-32-2.jpg",
+  "en": "Direction of the detour",
+  "ru": "Направление объезда",
+  "uz": "Chetlab o’tish yo’nalishi"
+ },
+ {
+  "id": "5-32-3",
+  "num": "5.32.3",
+  "cat": "information",
+  "file": "5-32-3.jpg",
+  "en": "Direction of the detour",
+  "ru": "Направление объезда",
+  "uz": "Chetlab o’tish yo’nalishi"
+ },
+ {
+  "id": "5-33",
+  "num": "5.33",
+  "cat": "information",
+  "file": "5-33.png",
+  "en": "Stop line",
+  "ru": "Стоп-линия",
+  "uz": "To’xtash"
+ },
+ {
+  "id": "5-34-1",
+  "num": "5.34.1",
+  "cat": "information",
+  "file": "5-34-1.gif",
+  "en": "Advance guide to another roadway",
+  "ru": "Предварительный указатель перестроения на другую проезжую часть",
+  "uz": "Boshqa qatnov qismiga qayta tizilishning boshlang’ich ko’rsatkichi"
+ },
+ {
+  "id": "5-34-2",
+  "num": "5.34.2",
+  "cat": "information",
+  "file": "5-34-2.gif",
+  "en": "Advance guide to another roadway",
+  "ru": "Предварительный указатель перестроения на другую проезжую часть",
+  "uz": "Boshqa qatnov qismiga qayta tizilishning boshlang’ich ko’rsatkichi"
+ },
+ {
+  "id": "5-35",
+  "num": "5.35",
+  "cat": "information",
+  "file": "5-35.gif",
+  "en": "Reverse movement",
+  "ru": "Реверсивное движение",
+  "uz": "Reversiv harakatlanish"
+ },
+ {
+  "id": "5-36",
+  "num": "5.36",
+  "cat": "information",
+  "file": "5-36.gif",
+  "en": "End of reverse movement",
+  "ru": "Конец реверсивного движения",
+  "uz": "Reversiv harakatlanish oxiri"
+ },
+ {
+  "id": "5-37",
+  "num": "5.37",
+  "cat": "information",
+  "file": "5-37.gif",
+  "en": "Departure on the road with reversing movement",
+  "ru": "Выезд на дорогу с реверсивным движением",
+  "uz": "Reversiv harakatlanish yo’liga chiqish"
+ },
+ {
+  "id": "5-38",
+  "num": "5.38",
+  "cat": "information",
+  "file": "5-38.gif",
+  "en": "Living sector",
+  "ru": "Жилая зона",
+  "uz": "Turar-joy dahasi"
+ },
+ {
+  "id": "5-39",
+  "num": "5.39",
+  "cat": "information",
+  "file": "5-39.gif",
+  "en": "End of living sector",
+  "ru": "Конец жилой зоны",
+  "uz": "Turar-joy dahasining oxiri"
+ },
+ {
+  "id": "5-40",
+  "num": "5.40",
+  "cat": "information",
+  "file": "5-40.gif",
+  "en": "Platform for emergency stop",
+  "ru": "Площадка для аварийной остановки",
+  "uz": "Falokatli holatlar uchun kirish yo’li"
+ },
+ {
+  "id": "5-41",
+  "num": "5.41",
+  "cat": "information",
+  "file": "5-41.png",
+  "en": "Photo and video fixation",
+  "ru": "Фото и видео фиксация",
+  "uz": "Surat va video"
+ },
+ {
+  "id": "5-43",
+  "num": "5.43",
+  "cat": "information",
+  "file": "5-43.jpg",
+  "en": "Radar",
+  "ru": "Радар",
+  "uz": "Radar"
+ },
+ {
+  "id": "5-42",
+  "num": "5.42",
+  "cat": "information",
+  "file": "5-42.png",
+  "en": "Right turn on the red light",
+  "ru": "Правый поворот на красный свет",
+  "uz": "Qizil rangda o'ng tomonga burilish"
+ },
+ {
+  "id": "5-44",
+  "num": "5.44",
+  "cat": "information",
+  "file": "5-44.jpg",
+  "en": "Bike lane",
+  "ru": "Полоса для велосипедов",
+  "uz": "Velosipedlar uchun harakatlanish bo'lagi"
+ },
+ {
+  "id": "5-45",
+  "num": "5.45",
+  "cat": "information",
+  "file": "5-45.jpg",
+  "en": "End of bike lane",
+  "ru": "Конец полосы для велосипедов",
+  "uz": "Velosipedlar uchun harakatlanish bo'lagining oxiri"
+ },
+ {
+  "id": "6-1",
+  "num": "6.1",
+  "cat": "service",
+  "file": "6-1.gif",
+  "en": "First medical aid station",
+  "ru": "Пункт первой медицинской помощи",
+  "uz": "Tibbiy yordam ko’rsatish joyi"
+ },
+ {
+  "id": "6-2",
+  "num": "6.2",
+  "cat": "service",
+  "file": "6-2.gif",
+  "en": "Hospital",
+  "ru": "Больница",
+  "uz": "Shifoxona"
+ },
+ {
+  "id": "6-3",
+  "num": "6.3",
+  "cat": "service",
+  "file": "6-3.gif",
+  "en": "Filling station",
+  "ru": "Автозаправочная станция",
+  "uz": "Yonilg’i shaxobchasi"
+ },
+ {
+  "id": "6-4",
+  "num": "6.4",
+  "cat": "service",
+  "file": "6-4.gif",
+  "en": "Car maintenance",
+  "ru": "Техническое обслуживание автомобилей",
+  "uz": "Texnik xizmat ko’rsatish joyi"
+ },
+ {
+  "id": "6-5",
+  "num": "6.5",
+  "cat": "service",
+  "file": "6-5.gif",
+  "en": "Car wash",
+  "ru": "Мойка автомобилей",
+  "uz": "Transport vositalarini yuvish joyi"
+ },
+ {
+  "id": "6-6",
+  "num": "6.6",
+  "cat": "service",
+  "file": "6-6.gif",
+  "en": "Telephone",
+  "ru": "Телефон",
+  "uz": "Telefon"
+ },
+ {
+  "id": "6-7",
+  "num": "6.7",
+  "cat": "service",
+  "file": "6-7.gif",
+  "en": "Eating point",
+  "ru": "Пункт питания",
+  "uz": "Oshxona"
+ },
+ {
+  "id": "6-8",
+  "num": "6.8",
+  "cat": "service",
+  "file": "6-8.gif",
+  "en": "Drinking water",
+  "ru": "Питьевая вода",
+  "uz": "Ichimlik suvi"
+ },
+ {
+  "id": "6-9",
+  "num": "6.9",
+  "cat": "service",
+  "file": "6-9.gif",
+  "en": "Hotel / motel",
+  "ru": "Гостиница или мотель",
+  "uz": "Mehmonxona"
+ },
+ {
+  "id": "6-10",
+  "num": "6.10",
+  "cat": "service",
+  "file": "6-10.gif",
+  "en": "Camping",
+  "ru": "Кемпинг",
+  "uz": "Kemping"
+ },
+ {
+  "id": "6-11",
+  "num": "6.11",
+  "cat": "service",
+  "file": "6-11.gif",
+  "en": "Resting-place",
+  "ru": "Место отдыха",
+  "uz": "Dam olish joyi"
+ },
+ {
+  "id": "6-12",
+  "num": "6.12",
+  "cat": "service",
+  "file": "6-12.jpg",
+  "en": "Post of the Road Patrol Service of the State Road Safety Service of the Ministry of Internal Affairs of the Republic of Uzbekistan",
+  "ru": "Пост Дорожно-патрульной службы Государственной службы Безопасности дорожного движения  Министерства внутренних дел Республики Узбекистан",
+  "uz": "Yo’l patrul xizmati maskani"
+ },
+ {
+  "id": "6-13",
+  "num": "6.13",
+  "cat": "service",
+  "file": "6-13.jpg",
+  "en": "Point of control of international road transport",
+  "ru": "Пункт контроля международных автомобильных перевозок",
+  "uz": "Xalqaro avtomobillarni tashish nazorat punkti"
+ },
+ {
+  "id": "6-14",
+  "num": "6.14",
+  "cat": "service",
+  "file": "6-14.gif",
+  "en": "Rest room",
+  "ru": "Туалет",
+  "uz": "Xojatxona"
+ },
+ {
+  "id": "6-15",
+  "num": "6.15",
+  "cat": "service",
+  "file": "6-15.jpg",
+  "en": "Urn",
+  "ru": "Урна",
+  "uz": "Axlat quti"
+ },
+ {
+  "id": "6-16",
+  "num": "6.16",
+  "cat": "service",
+  "file": "6-16.gif",
+  "en": "Pool or beach",
+  "ru": "Бассейн или пляж",
+  "uz": "Basseyn yoki sohil bo'yi"
+ },
+ {
+  "id": "6-17",
+  "num": "6.17",
+  "cat": "service",
+  "file": "6-17.png",
+  "en": "Police",
+  "ru": "Полиция",
+  "uz": "Polisiya"
+ },
+ {
+  "id": "7-1-1",
+  "num": "7.1.1",
+  "cat": "additional",
+  "file": "7-1-1.gif",
+  "en": "Distance to the object",
+  "ru": "Расстояние до объекта",
+  "uz": "Manzilgacha bo’lgan masofa"
+ },
+ {
+  "id": "7-1-2",
+  "num": "7.1.2",
+  "cat": "additional",
+  "file": "7-1-2.gif",
+  "en": "Distance to the object",
+  "ru": "Расстояние до объекта",
+  "uz": "Manzilgacha bo’lgan masofa"
+ },
+ {
+  "id": "7-1-3",
+  "num": "7.1.3",
+  "cat": "additional",
+  "file": "7-1-3.gif",
+  "en": "Distance to the object",
+  "ru": "Расстояние до объекта",
+  "uz": "Manzilgacha bo’lgan masofa"
+ },
+ {
+  "id": "7-1-4",
+  "num": "7.1.4",
+  "cat": "additional",
+  "file": "7-1-4.gif",
+  "en": "Distance to the object",
+  "ru": "Расстояние до объекта",
+  "uz": "Manzilgacha bo’lgan masofa"
+ },
+ {
+  "id": "7-2-1",
+  "num": "7.2.1",
+  "cat": "additional",
+  "file": "7-2-1.gif",
+  "en": "Action area",
+  "ru": "Зона действия",
+  "uz": "Ta’sir oralig’i"
+ },
+ {
+  "id": "7-2-2",
+  "num": "7.2.2",
+  "cat": "additional",
+  "file": "7-2-2.gif",
+  "en": "Action area",
+  "ru": "Зона действия",
+  "uz": "Ta’sir oralig’i"
+ },
+ {
+  "id": "7-2-3",
+  "num": "7.2.3",
+  "cat": "additional",
+  "file": "7-2-3.gif",
+  "en": "Action area",
+  "ru": "Зона действия",
+  "uz": "Ta’sir oralig’i"
+ },
+ {
+  "id": "7-2-4",
+  "num": "7.2.4",
+  "cat": "additional",
+  "file": "7-2-4.gif",
+  "en": "Action area",
+  "ru": "Зона действия",
+  "uz": "Ta’sir oralig’i"
+ },
+ {
+  "id": "7-2-5",
+  "num": "7.2.5",
+  "cat": "additional",
+  "file": "7-2-5.gif",
+  "en": "Action area",
+  "ru": "Зона действия",
+  "uz": "Ta’sir oralig’i"
+ },
+ {
+  "id": "7-2-6",
+  "num": "7.2.6",
+  "cat": "additional",
+  "file": "7-2-6.gif",
+  "en": "Action area",
+  "ru": "Зона действия",
+  "uz": "Ta’sir oralig’i"
+ },
+ {
+  "id": "7-3-1",
+  "num": "7.3.1",
+  "cat": "additional",
+  "file": "7-3-1.gif",
+  "en": "Directions of action",
+  "ru": "Направления действия",
+  "uz": "Ta’sir yo’nalishlari"
+ },
+ {
+  "id": "7-3-2",
+  "num": "7.3.2",
+  "cat": "additional",
+  "file": "7-3-2.gif",
+  "en": "Directions of action",
+  "ru": "Направления действия",
+  "uz": "Ta’sir yo’nalishlari"
+ },
+ {
+  "id": "7-3-3",
+  "num": "7.3.3",
+  "cat": "additional",
+  "file": "7-3-3.gif",
+  "en": "Directions of action",
+  "ru": "Направления действия",
+  "uz": "Ta’sir yo’nalishlari"
+ },
+ {
+  "id": "7-4-1",
+  "num": "7.4.1",
+  "cat": "additional",
+  "file": "7-4-1.gif",
+  "en": "Vehicle type",
+  "ru": "Вид транспортного средства",
+  "uz": "Transport vositasining turi"
+ },
+ {
+  "id": "7-4-2",
+  "num": "7.4.2",
+  "cat": "additional",
+  "file": "7-4-2.gif",
+  "en": "Vehicle type",
+  "ru": "Вид транспортного средства",
+  "uz": "Transport vositasining turi"
+ },
+ {
+  "id": "7-4-3",
+  "num": "7.4.3",
+  "cat": "additional",
+  "file": "7-4-3.gif",
+  "en": "Vehicle type",
+  "ru": "Вид транспортного средства",
+  "uz": "Transport vositasining turi"
+ },
+ {
+  "id": "7-4-4",
+  "num": "7.4.4",
+  "cat": "additional",
+  "file": "7-4-4.gif",
+  "en": "Vehicle type",
+  "ru": "Вид транспортного средства",
+  "uz": "Transport vositasining turi"
+ },
+ {
+  "id": "7-4-5",
+  "num": "7.4.5",
+  "cat": "additional",
+  "file": "7-4-5.gif",
+  "en": "Vehicle type",
+  "ru": "Вид транспортного средства",
+  "uz": "Transport vositasining turi"
+ },
+ {
+  "id": "7-4-6",
+  "num": "7.4.6",
+  "cat": "additional",
+  "file": "7-4-6.gif",
+  "en": "Vehicle type",
+  "ru": "Вид транспортного средства",
+  "uz": "Transport vositasining turi"
+ },
+ {
+  "id": "7-4-7",
+  "num": "7.4.7",
+  "cat": "additional",
+  "file": "7-4-7.gif",
+  "en": "Vehicle type",
+  "ru": "Вид транспортного средства",
+  "uz": "Transport vositasining turi"
+ },
+ {
+  "id": "7-4-8",
+  "num": "7.4.8",
+  "cat": "additional",
+  "file": "7-4-8.png",
+  "en": "Vehicle type",
+  "ru": "Вид транспортного средства",
+  "uz": "Transport vositasining turi"
+ },
+ {
+  "id": "7-5-1",
+  "num": "7.5.1",
+  "cat": "additional",
+  "file": "7-5-1.gif",
+  "en": "Weekend and holidays",
+  "ru": "Субботние воскресные и праздничные дни",
+  "uz": "Shanba, yakshanba va bayram kunlari"
+ },
+ {
+  "id": "7-5-2",
+  "num": "7.5.2",
+  "cat": "additional",
+  "file": "7-5-2.gif",
+  "en": "Working days",
+  "ru": "Рабочие дни",
+  "uz": "Ish kunlari"
+ },
+ {
+  "id": "7-5-3",
+  "num": "7.5.3",
+  "cat": "additional",
+  "file": "7-5-3.png",
+  "en": "Week days",
+  "ru": "Дни недели",
+  "uz": "Hafta kunlari"
+ },
+ {
+  "id": "7-5-4",
+  "num": "7.5.4",
+  "cat": "additional",
+  "file": "7-5-4.gif",
+  "en": "Time of action",
+  "ru": "Время действия",
+  "uz": "Amal qilish vaqti"
+ },
+ {
+  "id": "7-5-5",
+  "num": "7.5.5",
+  "cat": "additional",
+  "file": "7-5-5.gif",
+  "en": "Time of action",
+  "ru": "Время действия",
+  "uz": "Amal qilish vaqti"
+ },
+ {
+  "id": "7-5-6",
+  "num": "7.5.6",
+  "cat": "additional",
+  "file": "7-5-6.gif",
+  "en": "Time of action",
+  "ru": "Время действия",
+  "uz": "Amal qilish vaqti"
+ },
+ {
+  "id": "7-5-7",
+  "num": "7.5.7",
+  "cat": "additional",
+  "file": "7-5-7.png",
+  "en": "Time of action",
+  "ru": "Время действия",
+  "uz": "Amal qilish vaqti"
+ },
+ {
+  "id": "7-6-1",
+  "num": "7.6.1",
+  "cat": "additional",
+  "file": "7-6-1.gif",
+  "en": "The method of placing the vehicle in the parking lot",
+  "ru": "Способ постановки транспортного средства на стоянку",
+  "uz": "Transport vositasini to’xtab turish joyiga qo’yish usuli"
+ },
+ {
+  "id": "7-6-2",
+  "num": "7.6.2",
+  "cat": "additional",
+  "file": "7-6-2.gif",
+  "en": "The method of placing the vehicle in the parking lot",
+  "ru": "Способ постановки транспортного средства на стоянку",
+  "uz": "Transport vositasini to’xtab turish joyiga qo’yish usuli"
+ },
+ {
+  "id": "7-6-3",
+  "num": "7.6.3",
+  "cat": "additional",
+  "file": "7-6-3.gif",
+  "en": "The method of placing the vehicle in the parking lot",
+  "ru": "Способ постановки транспортного средства на стоянку",
+  "uz": "Transport vositasini to’xtab turish joyiga qo’yish usuli"
+ },
+ {
+  "id": "7-6-4",
+  "num": "7.6.4",
+  "cat": "additional",
+  "file": "7-6-4.png",
+  "en": "The method of placing the vehicle in the parking lot",
+  "ru": "Способ постановки транспортного средства на стоянку",
+  "uz": "Transport vositasini to’xtab turish joyiga qo’yish usuli"
+ },
+ {
+  "id": "7-6-5",
+  "num": "7.6.5",
+  "cat": "additional",
+  "file": "7-6-5.gif",
+  "en": "The method of placing the vehicle in the parking lot",
+  "ru": "Способ постановки транспортного средства на стоянку",
+  "uz": "Transport vositasini to’xtab turish joyiga qo’yish usuli"
+ },
+ {
+  "id": "7-6-6",
+  "num": "7.6.6",
+  "cat": "additional",
+  "file": "7-6-6.png",
+  "en": "The method of placing the vehicle in the parking lot",
+  "ru": "Способ постановки транспортного средства на стоянку",
+  "uz": "Transport vositasini to’xtab turish joyiga qo’yish usuli"
+ },
+ {
+  "id": "7-6-7",
+  "num": "7.6.7",
+  "cat": "additional",
+  "file": "7-6-7.png",
+  "en": "The method of placing the vehicle in the parking lot",
+  "ru": "Способ постановки транспортного средства на стоянку",
+  "uz": "Transport vositasini to’xtab turish joyiga qo’yish usuli"
+ },
+ {
+  "id": "7-6-8",
+  "num": "7.6.8",
+  "cat": "additional",
+  "file": "7-6-8.png",
+  "en": "The method of placing the vehicle in the parking lot",
+  "ru": "Способ постановки транспортного средства на стоянку",
+  "uz": "Transport vositasini to’xtab turish joyiga qo’yish usuli"
+ },
+ {
+  "id": "7-6-9",
+  "num": "7.6.9",
+  "cat": "additional",
+  "file": "7-6-9.gif",
+  "en": "The method of placing the vehicle in the parking lot",
+  "ru": "Способ постановки транспортного средства на стоянку",
+  "uz": "The method of placing the vehicle in the parking lot"
+ },
+ {
+  "id": "7-7",
+  "num": "7.7",
+  "cat": "additional",
+  "file": "7-7.gif",
+  "en": "Parking with inoperative engine",
+  "ru": "Стоянка с неработающим двигателем",
+  "uz": "Yurgizgichni ishlatmasdan to’xtab turish joyi"
+ },
+ {
+  "id": "7-8",
+  "num": "7.8",
+  "cat": "additional",
+  "file": "7-8.gif",
+  "en": "Paid services",
+  "ru": "Платные услуги",
+  "uz": "Pullik xizmat ko’rsatish joyi"
+ },
+ {
+  "id": "7-9",
+  "num": "7.9",
+  "cat": "additional",
+  "file": "7-9.png",
+  "en": "Parking time limit",
+  "ru": "Ограничение продолжительности стоянки",
+  "uz": "To’xtab turish muddati cheklangan"
+ },
+ {
+  "id": "7-10",
+  "num": "7.10",
+  "cat": "additional",
+  "file": "7-10.gif",
+  "en": "Place to inspect cars",
+  "ru": "Место для осмотра автомобилей",
+  "uz": "Avtomobillarni ko’rikdan o’tkazish joyi"
+ },
+ {
+  "id": "7-11",
+  "num": "7.11",
+  "cat": "additional",
+  "file": "7-11.png",
+  "en": "Maximum allowed mass limit",
+  "ru": "Ограничение разрешенной максимальной массы",
+  "uz": "To’la vazni cheklangan"
+ },
+ {
+  "id": "7-12",
+  "num": "7.12",
+  "cat": "additional",
+  "file": "7-12.png",
+  "en": "Dangerous roadside",
+  "ru": "Опасная обочина",
+  "uz": "Xavfli yo’l yoqasi"
+ },
+ {
+  "id": "7-13",
+  "num": "7.13",
+  "cat": "additional",
+  "file": "7-13.gif",
+  "en": "Direction of the main road",
+  "ru": "Направление главной дороги",
+  "uz": "Asosiy yo’lning yo’nalishi"
+ },
+ {
+  "id": "7-14",
+  "num": "7.14",
+  "cat": "additional",
+  "file": "7-14.gif",
+  "en": "Lane",
+  "ru": "Полоса движения",
+  "uz": "Harakatlanish bo’lagi"
+ },
+ {
+  "id": "7-15",
+  "num": "7.15",
+  "cat": "additional",
+  "file": "7-15.gif",
+  "en": "Blind pedestrians",
+  "ru": "Слепые пешеходы",
+  "uz": "Ko’zi ojiz piyodalar"
+ },
+ {
+  "id": "7-16",
+  "num": "7.16",
+  "cat": "additional",
+  "file": "7-16.gif",
+  "en": "Wet coating",
+  "ru": "Влажное покрытие",
+  "uz": "Nam qoplama"
+ },
+ {
+  "id": "7-17",
+  "num": "7.17",
+  "cat": "additional",
+  "file": "7-17.gif",
+  "en": "Disabled people",
+  "ru": "Инвалиды",
+  "uz": "Nogironlar"
+ },
+ {
+  "id": "7-18",
+  "num": "7.18",
+  "cat": "additional",
+  "file": "7-18.gif",
+  "en": "Except disabled people",
+  "ru": "Кроме инвалидов",
+  "uz": "Nogironlar mustasno"
+ },
+ {
+  "id": "7-19",
+  "num": "7.19",
+  "cat": "additional",
+  "file": "7-19.png",
+  "en": "Photo and video fixation",
+  "ru": "Фото и видео фиксация",
+  "uz": "Chorrahadagi kamera"
+ },
+ {
+  "id": "7-20",
+  "num": "7.20",
+  "cat": "additional",
+  "file": "7-20.png",
+  "en": "Dangerous goods class",
+  "ru": "Класс опасного груза",
+  "uz": "Xavfli yuk"
+ },
+ {
+  "id": "7-21",
+  "num": "7.21",
+  "cat": "additional",
+  "file": "7-21.png",
+  "en": "Evacuator is working",
+  "ru": "Работает эвакуатор",
+  "uz": "Evakuator ishlamoqda"
+ },
+ {
+  "id": "7-21-1",
+  "num": "7.21.1",
+  "cat": "additional",
+  "file": "7-21-1.png",
+  "en": "Type of route vehicle",
+  "ru": "Вид маршрутного транспортного средства",
+  "uz": "Marshrutli transport vositasi turi"
+ },
+ {
+  "id": "7-21-2",
+  "num": "7.21.2",
+  "cat": "additional",
+  "file": "7-21-2.png",
+  "en": "Type of route vehicle",
+  "ru": "Вид маршрутного транспортного средства",
+  "uz": "Marshrutli transport vositasi turi"
+ },
+ {
+  "id": "7-21-3",
+  "num": "7.21.3",
+  "cat": "additional",
+  "file": "7-21-3.png",
+  "en": "Type of route vehicle",
+  "ru": "Вид маршрутного транспортного средства",
+  "uz": "Marshrutli transport vositasi turi"
+ },
+ {
+  "id": "obstacle",
+  "num": "",
+  "cat": "additional",
+  "file": "obstacle.jpg",
+  "en": "Obstacle",
+  "ru": "Препятствие",
+  "uz": "To'siq"
+ }
+]
