@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-export function CarModel({ color, blink }: { color: string; blink?: "left" | "right" }) {
+export function CarModel({ color, blink }: { color: string; blink?: "left" | "right" | "both" | "hazard" }) {
   const mat = useRef<THREE.MeshStandardMaterial>(null);
   useFrame(() => {
     if (mat.current) mat.current.emissiveIntensity = Math.sin(performance.now() / 110) > 0 ? 3 : 0.2;
@@ -45,12 +45,13 @@ export function CarModel({ color, blink }: { color: string; blink?: "left" | "ri
           <meshStandardMaterial color="#8c0f16" emissive="#ff1a24" emissiveIntensity={0.9} />
         </mesh>
       ))}
-      {blink && (
-        <mesh position={[blink === "right" ? -0.78 : 0.78, 0.7, 1.55]}>
-          <boxGeometry args={[0.2, 0.14, 0.12]} />
-          <meshStandardMaterial ref={mat} color="#ffb000" emissive="#ffb000" emissiveIntensity={2} />
-        </mesh>
-      )}
+      {blink &&
+        (blink === "both" || blink === "hazard" ? [-0.78, 0.78] : [blink === "right" ? -0.78 : 0.78]).map((x, i) => (
+          <mesh key={x} position={[x, 0.7, 1.55]}>
+            <boxGeometry args={[0.2, 0.14, 0.12]} />
+            <meshStandardMaterial ref={i === 0 ? mat : undefined} color="#ffb000" emissive="#ffb000" emissiveIntensity={2} />
+          </mesh>
+        ))}
     </group>
   );
 }

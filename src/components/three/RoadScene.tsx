@@ -9,6 +9,8 @@ import { ArrowCounterClockwise, Play } from "@phosphor-icons/react";
 import type { SceneCar, SceneSpec, Side } from "@/lib/types";
 import { Sign3D } from "./Sign3D";
 import { CarModel } from "./Car3D";
+import { Clock, RELEASE_DELAY, sceneTime } from "./sceneClock";
+import { Light, PaintView, PropView, routeDuration } from "./Props";
 
 /* ---------- geometry helpers (top down, x right, z toward the viewer) ---------- */
 
@@ -72,9 +74,6 @@ function approachTime(car: SceneCar) {
   return (hold / SPEED) * 1.7;
 }
 
-/** Seconds after Play before cars are released, so they reach the stop line first. */
-const RELEASE_DELAY = 3.2;
-
 function goTime(car: SceneCar) {
   return RELEASE_DELAY + (car.order ?? 0) * GAP + (car.delay ?? 0);
 }
@@ -95,38 +94,6 @@ function distanceAt(car: SceneCar, t: number, tr: number, tf: number): number {
 }
 
 /* ---------- vehicle ---------- */
-
-class Clock {
-  t0: number | null = null;
-  rel: number | null = null;
-  gated = false;
-  /** gated: hold the cars at the stop line until release() is called. */
-  start(gated: boolean) {
-    const now = performance.now() / 1000;
-    this.t0 = now;
-    this.gated = gated;
-    this.rel = gated ? null : now + RELEASE_DELAY;
-  }
-  release() {
-    if (this.t0 != null && this.rel == null) this.rel = performance.now() / 1000;
-  }
-  reset() {
-    this.t0 = null;
-    this.rel = null;
-  }
-}
-
-function sceneTime(clock: Clock, loop: boolean, period: number) {
-  const now = performance.now() / 1000;
-  if (loop) {
-    const t = now % period;
-    return { t, tr: t - RELEASE_DELAY, tf: t };
-  }
-  if (clock.t0 == null) return { t: 0, tr: -1, tf: 0 };
-  const t = now - clock.t0;
-  const tr = clock.rel == null ? -1 : now - clock.rel;
-  return { t, tr, tf: clock.gated ? tr : t };
-}
 
 function Car({ car, clock, loop, period }: { car: SceneCar; clock: Clock; loop: boolean; period: number }) {
   const path = useMemo(() => buildPath(car), [car]);
@@ -188,51 +155,22 @@ function Pedestrian({ clock, loop, period }: { clock: Clock; loop: boolean; peri
   );
 }
 
-function Light({ state }: { state: "red" | "yellow" | "green" }) {
-  const lamps: [string, "red" | "yellow" | "green", number][] = [
-    ["#ff2b2b", "red", 3.1],
-    ["#ffbf1f", "yellow", 2.75],
-    ["#2bd46b", "green", 2.4],
-  ];
-  return (
-    <group>
-      <mesh position={[0, 1.6, 0]} castShadow>
-        <cylinderGeometry args={[0.06, 0.06, 3.2, 10]} />
-        <meshStandardMaterial color="#6d7176" metalness={0.5} roughness={0.5} />
-      </mesh>
-      <mesh position={[0, 2.75, 0.05]} castShadow>
-        <boxGeometry args={[0.55, 1.2, 0.3]} />
-        <meshStandardMaterial color="#15171a" roughness={0.6} />
-      </mesh>
-      {lamps.map(([c, name, y]) => (
-        <mesh key={name} position={[0, y, 0.22]}>
-          <sphereGeometry args={[0.15, 16, 16]} />
-          <meshStandardMaterial
-            color={state === name ? c : "#2a2d31"}
-            emissive={state === name ? c : "#000"}
-            emissiveIntensity={state === name ? 2.8 : 0}
-          />
-        </mesh>
-      ))}
-    </group>
-  );
-}
-
 function Arm({ side, spec, clock, loop, period }: { side: Side; spec: SceneSpec; clock: Clock; loop: boolean; period: number }) {
   const a = mul(HEAD[side], -1);
   const theta = Math.atan2(a[0], a[1]);
   const sign = spec.signs?.filter((s) => s.side === side) ?? [];
   const light = spec.lights?.find((l) => l.side === side);
-  const dashes = Array.from({ length: 6 }, (_, i) => 10 + i * 2.6);
+  const L = spec.armLength ?? 20;
+  const dashes = Array.from({ length: Math.max(6, Math.floor((L - 8) / 2.6)) }, (_, i) => 10 + i * 2.6);
   return (
     <group rotation={[0, theta, 0]}>
-      <mesh position={[0, 0.02, 13]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[6, 20]} />
+      <mesh position={[0, 0.02, 3 + L / 2]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+        <planeGeometry args={[6, L]} />
         <meshStandardMaterial color="#34373c" roughness={0.95} />
       </mesh>
       {[-3.25, 3.25].map((x) => (
-        <mesh key={x} position={[x, 0.1, 13]} receiveShadow castShadow>
-          <boxGeometry args={[0.5, 0.2, 20]} />
+        <mesh key={x} position={[x, 0.1, 3 + L / 2]} receiveShadow castShadow>
+          <boxGeometry args={[0.5, 0.2, L]} />
           <meshStandardMaterial color="#6a6e74" roughness={0.9} />
         </mesh>
       ))}
@@ -301,15 +239,174 @@ function Town() {
   );
 }
 
-function World({ spec, clock, loop, period, autoRotate }: { spec: SceneSpec; clock: Clock; loop: boolean; period: number; autoRotate: boolean }) {
-  const arms = spec.arms ?? ALL;
+function Ground({ color = "#1e2a20", r = 34 }: { color?: string; r?: number }) {
+  return (
+    <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+      <circleGeometry args={[r, 48]} />
+      <meshStandardMaterial color={color} roughness={1} />
+    </mesh>
+  );
+}
+
+const Asphalt = ({ x = 0, z = 0, w, l }: { x?: number; z?: number; w: number; l: number }) => (
+  <mesh position={[x, 0.02, z]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+    <planeGeometry args={[w, l]} />
+    <meshStandardMaterial color="#34373c" roughness={0.95} />
+  </mesh>
+);
+
+/** Buildings and trees on both sides of a straight road. */
+function Roadside({ half }: { half: number }) {
+  const rows: [number, number, number, string][] = [
+    [-22, 4, 6, "#3d4148"],
+    [-6, 6, 5, "#4a4f57"],
+    [10, 5, 7, "#424851"],
+    [26, 4, 5, "#383c43"],
+  ];
   return (
     <>
-      <ambientLight intensity={0.75} />
-      <hemisphereLight args={["#bcd3ff", "#1b2418", 0.6]} />
+      {[-1, 1].map((side) =>
+        rows.map(([z, h, w, c], i) => (
+          <mesh key={`${side}${i}`} position={[side * (half + 8 + (i % 2) * 2), h / 2, z + (side > 0 ? 4 : 0)]} castShadow receiveShadow>
+            <boxGeometry args={[w, h, 7]} />
+            <meshStandardMaterial color={c} roughness={0.85} />
+          </mesh>
+        )),
+      )}
+      {[-1, 1].flatMap((side) =>
+        [-14, 0, 15].map((z) => (
+          <group key={`t${side}${z}`} position={[side * (half + 4.2), 0, z]}>
+            <mesh position={[0, 0.6, 0]} castShadow>
+              <cylinderGeometry args={[0.12, 0.16, 1.2, 8]} />
+              <meshStandardMaterial color="#5b4630" />
+            </mesh>
+            <mesh position={[0, 1.8, 0]} castShadow>
+              <coneGeometry args={[0.9, 2.2, 10]} />
+              <meshStandardMaterial color="#2c5a3c" roughness={0.9} />
+            </mesh>
+          </group>
+        )),
+      )}
+    </>
+  );
+}
+
+function RoadLayout({ spec }: { spec: SceneSpec }) {
+  const w = spec.roadWidth ?? 8;
+  const half = w / 2;
+  return (
+    <>
+      <Asphalt w={w} l={90} />
+      {[-1, 1].map((side) => (
+        <group key={side}>
+          <mesh position={[side * (half + 0.25), 0.1, 0]} castShadow receiveShadow>
+            <boxGeometry args={[0.5, 0.2, 90]} />
+            <meshStandardMaterial color="#6a6e74" roughness={0.9} />
+          </mesh>
+          <mesh position={[side * (half + 2.2), 0.12, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+            <planeGeometry args={[3.4, 90]} />
+            <meshStandardMaterial color="#55585c" roughness={0.95} />
+          </mesh>
+        </group>
+      ))}
+      <Roadside half={half} />
+      {spec.layout === "railway" && (
+        <>
+          <mesh position={[0, 0.06, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+            <planeGeometry args={[w, 3.6]} />
+            <meshStandardMaterial color="#5a4a3a" roughness={1} />
+          </mesh>
+          {[-0.8, 0.8].map((z) => (
+            <mesh key={z} position={[0, 0.16, z]}>
+              <boxGeometry args={[70, 0.12, 0.12]} />
+              <meshStandardMaterial color="#9aa0a6" metalness={0.7} roughness={0.4} />
+            </mesh>
+          ))}
+          {Array.from({ length: 70 }, (_, i) => (
+            <mesh key={i} position={[-34.5 + i, 0.08, 0]}>
+              <boxGeometry args={[0.3, 0.08, 2.4]} />
+              <meshStandardMaterial color="#4a3b2c" roughness={1} />
+            </mesh>
+          ))}
+        </>
+      )}
+    </>
+  );
+}
+
+function LotLayout() {
+  return (
+    <>
+      <Asphalt w={38} l={28} />
+      {[-1, 1].map((s) => (
+        <mesh key={s} position={[s * 20, 3, -6]} castShadow>
+          <boxGeometry args={[4, 6, 14]} />
+          <meshStandardMaterial color={s > 0 ? "#424851" : "#383c43"} roughness={0.85} />
+        </mesh>
+      ))}
+    </>
+  );
+}
+
+function RoundLayout() {
+  return (
+    <>
+      <mesh position={[0, 0.03, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
+        <ringGeometry args={[4.6, 10.4, 56]} />
+        <meshStandardMaterial color="#34373c" roughness={0.95} />
+      </mesh>
+      <mesh position={[0, 0.2, 0]} receiveShadow castShadow>
+        <cylinderGeometry args={[4.4, 4.6, 0.4, 40]} />
+        <meshStandardMaterial color="#2c5a3c" roughness={1} />
+      </mesh>
+      {[
+        [0, 17, 0],
+        [0, -17, 0],
+        [17, 0, Math.PI / 2],
+        [-17, 0, Math.PI / 2],
+      ].map(([x, z, r], i) => (
+        <mesh key={i} position={[x, 0.025, z]} rotation={[-Math.PI / 2, 0, r]} receiveShadow>
+          <planeGeometry args={[6, 14]} />
+          <meshStandardMaterial color="#34373c" roughness={0.95} />
+        </mesh>
+      ))}
+    </>
+  );
+}
+
+function World({
+  spec,
+  clock,
+  loop,
+  period,
+  autoRotate,
+}: {
+  spec: SceneSpec;
+  clock: Clock;
+  loop: boolean;
+  period: number;
+  autoRotate: boolean;
+}) {
+  const layout = spec.layout ?? "cross";
+  const arms = spec.arms ?? ALL;
+  const night = spec.env === "night";
+  const fog = spec.env === "fog";
+  const focus = spec.focus ?? [0, 0];
+  return (
+    <>
+      {night && <color attach="background" args={["#060914"]} />}
+      {fog && (
+        <>
+          <color attach="background" args={["#b6bfc6"]} />
+          <fog attach="fog" args={["#b6bfc6", 6, 34]} />
+        </>
+      )}
+      <ambientLight intensity={night ? 0.3 : fog ? 0.95 : 0.75} />
+      <hemisphereLight args={[night ? "#5b6ea8" : "#bcd3ff", "#1b2418", night ? 0.25 : 0.6]} />
       <directionalLight
         position={[12, 20, 8]}
-        intensity={2.1}
+        intensity={night ? 0.6 : fog ? 1.1 : 2.1}
+        color={night ? "#8fa8ff" : "#ffffff"}
         castShadow
         shadow-mapSize={[1024, 1024]}
         shadow-camera-left={-22}
@@ -317,25 +414,33 @@ function World({ spec, clock, loop, period, autoRotate }: { spec: SceneSpec; clo
         shadow-camera-top={22}
         shadow-camera-bottom={-22}
       />
-      <mesh rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <circleGeometry args={[34, 48]} />
-        <meshStandardMaterial color="#1e2a20" roughness={1} />
-      </mesh>
-      <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-        <planeGeometry args={[6, 6]} />
-        <meshStandardMaterial color="#34373c" roughness={0.95} />
-      </mesh>
-      {arms.map((s) => (
-        <Arm key={s} side={s} spec={spec} clock={clock} loop={loop} period={period} />
-      ))}
-      <Town />
-      {spec.cars.map((c) => (
-        <Car key={c.id} car={c} clock={clock} loop={loop} period={period} />
-      ))}
+      <group rotation={[spec.tilt ?? 0, 0, 0]}>
+        <Ground color={fog ? "#7b8a80" : "#1e2a20"} />
+        {layout === "cross" && (
+          <>
+            <Asphalt w={6} l={6} />
+            {arms.map((s) => (
+              <Arm key={s} side={s} spec={spec} clock={clock} loop={loop} period={period} />
+            ))}
+            <Town />
+          </>
+        )}
+        {(layout === "road" || layout === "railway") && <RoadLayout spec={spec} />}
+        {layout === "lot" && <LotLayout />}
+        {layout === "round" && <RoundLayout />}
+        {spec.paint && <PaintView paint={spec.paint} />}
+        {spec.cars.map((c) => (
+          <Car key={c.id} car={c} clock={clock} loop={loop} period={period} />
+        ))}
+        {spec.props?.map((p, i) => (
+          <PropView key={i} prop={p} clock={clock} loop={loop} period={period} />
+        ))}
+      </group>
       <OrbitControls
         enablePan={false}
-        minDistance={14}
-        maxDistance={38}
+        target={[focus[0], 0, focus[1]]}
+        minDistance={10}
+        maxDistance={42}
         maxPolarAngle={1.42}
         minPolarAngle={0.35}
         autoRotate={autoRotate}
@@ -402,10 +507,12 @@ export default function RoadSceneView({
       const run = c.free ? 9 : goTime(c) + 9;
       max = Math.max(max, run);
     }
+    for (const p of spec.props ?? []) max = Math.max(max, routeDuration(p) + 2);
     return Math.max(max, 6) + 1.5;
   }, [spec]);
 
   const doLoop = loop && !reduced;
+  const moves = spec.cars.length > 0 || !!spec.pedestrian || !!spec.props?.some((p) => p.route);
 
   const play = () => {
     clock.start(false);
@@ -421,13 +528,13 @@ export default function RoadSceneView({
       <Canvas
         shadows
         dpr={[1, 2]}
-        camera={{ position: [19, 17, 19], fov: 38 }}
+        camera={{ position: spec.camera ?? ((spec.layout ?? "cross") === "cross" ? [19, 17, 19] : spec.layout === "round" ? [22, 22, 22] : [26, 21, 17]), fov: 38 }}
         role="img"
         aria-label={label}
       >
         <World spec={spec} clock={clock} loop={doLoop} period={period} autoRotate={autoRotate && !reduced} />
       </Canvas>
-      {(controls || gated) && (
+      {(controls || gated) && moves && (
         <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 p-3">
           <div className="pointer-events-auto flex gap-2">
             {gated ? (

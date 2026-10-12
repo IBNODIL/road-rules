@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { PASS_MARK, lessons } from "@/lib/content";
 import { levelIds } from "@/lib/sim";
-import { allRuleIds } from "@/lib/rules/data";
+import { allRuleIds, chapters, isRead, partHref, partKeys, partNumber } from "@/lib/rules/data";
 import { rulesUi } from "@/lib/rules/ui";
 import { resetAll, useData, useReady } from "@/lib/storage";
 import { useI18n } from "@/lib/i18n";
@@ -26,25 +26,69 @@ export function ProgressView() {
 
   if (!ready) return shell(<div className="skeleton h-64 w-full rounded-2xl" aria-hidden />);
 
+  const lessonDone = (slug: string) => data.completed.includes(slug) || data.read.includes(`lesson:${slug}`);
   const best = data.attempts.reduce((m, a) => Math.max(m, a.score / a.total), 0);
   const avg = data.attempts.length ? data.attempts.reduce((s, a) => s + a.score / a.total, 0) / data.attempts.length : 0;
-  const stats = [
-    { label: p.lessons, value: `${data.completed.length} / ${lessons.length}` },
+  /* the figures below are computed after the per-chapter numbers, see statsList */
+  const stats: { label: string; value: string }[] = [];
+
+  const perPart = partKeys.map((key) => {
+    const c = chapters.find((x) => x.key === key);
+    const total = c ? c.rules.length : lessons.length;
+    const done = c ? c.rules.filter((id) => isRead(data.read, data.rules, id)).length : lessons.filter((l) => lessonDone(l.slug)).length;
+    return { key, total, done, test: data.partTests[key] };
+  });
+  const totalAll = perPart.reduce((n, x) => n + x.total, 0);
+  const doneAll = perPart.reduce((n, x) => n + x.done, 0);
+  const ru = rulesUi[lang];
+  stats.push(
+    { label: ru.readStat, value: `${Math.round((doneAll / totalAll) * 100)}%` },
+    { label: ru.chapterTests, value: `${perPart.filter((x) => x.test).length} / ${partKeys.length}` },
     { label: p.tests, value: String(data.attempts.length) },
     { label: p.best, value: data.attempts.length ? `${Math.round(best * 100)}%` : p.none },
     { label: p.avg, value: data.attempts.length ? `${Math.round(avg * 100)}%` : p.none },
-  ];
+  );
 
   return shell(
     <div className="flex flex-col gap-12">
-      <dl className="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <dl className="grid grid-cols-2 gap-4 md:grid-cols-5">
         {stats.map((s) => (
-          <div key={s.label} className="card">
+          <div key={s.label} className="card first:col-span-2 md:first:col-span-1">
             <dt className="text-sm text-[#9B9B9B]">{s.label}</dt>
             <dd className="mt-2 text-3xl font-semibold">{s.value}</dd>
           </div>
         ))}
       </dl>
+
+      <section aria-labelledby="overall">
+        <h2 id="overall" className="text-2xl font-semibold">
+          {ru.overall}
+        </h2>
+        <div className="mt-3 h-2 max-w-xl rounded-full bg-[#272727]" role="progressbar" aria-valuenow={doneAll} aria-valuemax={totalAll} aria-label={ru.overall}>
+          <div className="h-2 rounded-full bg-[#FFB800] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]" style={{ width: `${(doneAll / totalAll) * 100}%` }} />
+        </div>
+        <p className="mt-2 text-base text-[#9B9B9B]">{ru.readOf(doneAll, totalAll)}</p>
+        <h3 className="mt-8 text-xl font-semibold">{ru.chaptersHeading}</h3>
+        <ul className="mt-3 grid gap-2 md:grid-cols-2">
+          {perPart.map((x) => (
+            <li key={x.key}>
+              <Link href={partHref(x.key)} className="flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-[#181818] px-4 py-3 hover:bg-[#1F1F1F]">
+                <span className="min-w-0">
+                  <span className="font-mono text-xs text-[#FFB800]">{partNumber(x.key)}</span>{" "}
+                  <span className="text-base">{ru.chapterNames[x.key]}</span>
+                  <span className="mt-1 block h-1.5 w-40 max-w-full rounded-full bg-[#272727]">
+                    <span className="block h-1.5 rounded-full bg-[#FFB800]" style={{ width: `${(x.done / x.total) * 100}%` }} />
+                  </span>
+                </span>
+                <span className="shrink-0 text-right text-sm text-[#9B9B9B]">
+                  {x.done}/{x.total}
+                  <span className={`block ${x.test ? "font-semibold text-[#30a46c]" : ""}`}>{x.test ? ru.chapterTestScore(x.test.score, x.test.total) : ru.notTaken}</span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
 
       <section aria-labelledby="rules-progress">
         <h2 id="rules-progress" className="text-2xl font-semibold">

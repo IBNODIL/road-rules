@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ArrowLeft, ArrowRight, CheckCircle, Trophy, XCircle } from "@phosphor-icons/react";
 import { useI18n } from "@/lib/i18n";
-import { allRuleIds, buildQuiz, clauseLabel, ruleSlug } from "@/lib/rules/data";
+import { allRuleIds, buildQuiz, clauseRef, ruleHref, ruleNumber } from "@/lib/rules/data";
 import { rulesUi } from "@/lib/rules/ui";
 import { ruleTexts } from "@/lib/rules/texts";
 import { update, useData, useReady, type Attempt } from "@/lib/storage";
@@ -101,11 +101,11 @@ export function RulesExam() {
               {result.wrong.map((id) => (
                 <li key={id} className="rounded-lg border border-white/10 bg-[#181818] p-4">
                   <p className="font-mono text-xs text-[#FFB800]">
-                    {ui.clause} {clauseLabel(id)}
+                    {ruleNumber(id)} · {ui.tag(clauseRef(id).kind, clauseRef(id).n)}
                   </p>
                   <p className="mt-1 text-base font-semibold">{texts[id][0]}</p>
                   <p className="mt-1 text-sm text-[#9B9B9B]">{texts[id][1]}</p>
-                  <Link href={`/learn/rules/${ruleSlug(id)}`} className="mt-2 inline-block text-sm font-semibold text-[#FFB800] hover:underline">
+                  <Link href={ruleHref(id)} className="mt-2 inline-block text-sm font-semibold text-[#FFB800] hover:underline">
                     {ui.readRule}
                   </Link>
                 </li>
@@ -173,7 +173,7 @@ export function RulesExam() {
         {answered && (
           <div className="rounded-lg border border-white/10 bg-[#1F1F1F] p-4" role="status">
             <p className="font-mono text-xs text-[#FFB800]">
-              {ui.clause} {clauseLabel(id)} · {t[0]}
+              {ruleNumber(id)} · {ui.tag(clauseRef(id).kind, clauseRef(id).n)} · {t[0]}
             </p>
             <p className="mt-1 text-sm text-[#9B9B9B]">{t[1]}</p>
           </div>

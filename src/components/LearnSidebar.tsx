@@ -6,10 +6,13 @@ import { useState } from "react";
 import { CheckCircle, List, MagnifyingGlass, X } from "@phosphor-icons/react";
 import { lessons } from "@/lib/content";
 import { useI18n } from "@/lib/i18n";
-import { chapters, clauseLabel, ruleSlug } from "@/lib/rules/data";
-import { rulesUi } from "@/lib/rules/ui";
+import { chapters, isRead, partHref, partKeys, partNumber, ruleNumber, ruleSlug, testHref } from "@/lib/rules/data";
 import { ruleTexts } from "@/lib/rules/texts";
+import { rulesUi } from "@/lib/rules/ui";
+import { useActiveSection } from "@/lib/scrollspy";
 import { useData } from "@/lib/storage";
+
+type Item = { id: string; num: string; label: string; done: boolean };
 
 function Panel({ onNavigate }: { onNavigate: () => void }) {
   const { t, lang } = useI18n();
@@ -17,30 +20,34 @@ function Panel({ onNavigate }: { onNavigate: () => void }) {
   const texts = ruleTexts[lang];
   const data = useData();
   const path = usePathname();
+  const spy = useActiveSection();
   const [q, setQ] = useState("");
   const needle = q.trim().toLowerCase();
 
-  const link = (href: string, active: boolean) =>
-    `flex items-start justify-between gap-2 rounded-lg px-2 py-1.5 text-sm transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+  const parts = partKeys.map((key) => {
+    const items: Item[] =
+      key === "lessons"
+        ? lessons.map((l, i) => ({ id: `lesson-${l.slug}`, num: `1.${i + 1}`, label: t.lessons[l.slug].title, done: data.completed.includes(l.slug) || data.read.includes(`lesson:${l.slug}`) }))
+        : chapters
+            .find((c) => c.key === key)!
+            .rules.map((id) => ({ id: `rule-${ruleSlug(id)}`, num: ruleNumber(id), label: texts[id][0], done: isRead(data.read, data.rules, id) }));
+    return { key, name: ui.chapterNames[key], items };
+  });
+
+  const visible = parts
+    .map((p) => ({
+      ...p,
+      shown: !needle || p.name.toLowerCase().includes(needle) ? p.items : p.items.filter((i) => i.label.toLowerCase().includes(needle)),
+    }))
+    .filter((p) => p.shown.length > 0);
+
+  const row = (active: boolean) =>
+    `flex items-start gap-2 rounded-lg px-2 py-1.5 text-sm transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
       active ? "bg-[#272727] font-semibold text-white" : "text-[#9B9B9B] hover:bg-[#1F1F1F] hover:text-white"
     }`;
 
-  const visibleLessons = lessons.filter((l) => !needle || t.lessons[l.slug].title.toLowerCase().includes(needle));
-  const visibleChapters = chapters
-    .map((c) => ({
-      ...c,
-      rules: c.rules.filter(
-        (id) =>
-          !needle ||
-          texts[id][0].toLowerCase().includes(needle) ||
-          clauseLabel(id).toLowerCase().includes(needle) ||
-          ui.chapterNames[c.key].toLowerCase().includes(needle),
-      ),
-    }))
-    .filter((c) => c.rules.length > 0);
-
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3">
       <div className="relative">
         <MagnifyingGlass size={16} className="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-[#9B9B9B]" aria-hidden />
         <input
@@ -53,69 +60,54 @@ function Panel({ onNavigate }: { onNavigate: () => void }) {
         />
       </div>
 
-      {visibleLessons.length > 0 && (
-        <div>
-          <p className="px-2 text-xs font-semibold uppercase tracking-wide text-[#FFB800]">{ui.lessonsHeading}</p>
-          <ul className="mt-1">
-            {visibleLessons.map((l) => {
-              const href = `/learn/${l.slug}`;
-              const active = path === href;
-              return (
-                <li key={l.slug}>
-                  <Link href={href} onClick={onNavigate} aria-current={active ? "page" : undefined} className={link(href, active)}>
-                    <span>{t.lessons[l.slug].title}</span>
-                    {data.completed.includes(l.slug) && <CheckCircle size={16} weight="fill" className="mt-0.5 shrink-0 text-[#30a46c]" aria-hidden />}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+      <ul className="flex flex-col gap-1">
+        {visible.map((p) => {
+          const href = partHref(p.key);
+          const here = path === href || path === testHref(p.key);
+          const done = p.items.filter((i) => i.done).length;
+          return (
+            <li key={`${p.key}-${here}-${needle ? "s" : ""}`}>
+              <details open={here || !!needle}>
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-sm font-semibold text-white hover:bg-[#1F1F1F]">
+                  <span className="flex items-baseline gap-2">
+                    <span className="font-mono text-xs text-[#FFB800]">{partNumber(p.key)}</span>
+                    {p.name}
+                  </span>
+                  <span className="shrink-0 text-xs font-normal text-[#9B9B9B]">
+                    {done}/{p.items.length}
+                  </span>
+                </summary>
+                <ul className="ml-3 mt-1 flex flex-col gap-0.5 pl-2">
+                  {p.shown.map((i) => {
+                    const active = here && spy === i.id;
+                    return (
+                      <li key={i.id}>
+                        <Link href={`${href}#${i.id}`} onClick={onNavigate} aria-current={active ? "location" : undefined} className={row(active)}>
+                          <span className="w-8 shrink-0 font-mono text-xs text-[#FFB800]">{i.num}</span>
+                          <span className="grow">{i.label}</span>
+                          {i.done && <CheckCircle size={16} weight="fill" className="mt-0.5 shrink-0 text-[#30a46c]" aria-hidden />}
+                        </Link>
+                      </li>
+                    );
+                  })}
+                  {/* the chapter test always closes the list */}
+                  <li>
+                    <Link href={testHref(p.key)} onClick={onNavigate} aria-current={path === testHref(p.key) ? "page" : undefined} className={row(path === testHref(p.key))}>
+                      <span className="w-8 shrink-0 font-mono text-xs text-[#FFB800]">?</span>
+                      <span className="grow font-semibold">{ui.testLabel}</span>
+                      {data.partTests[p.key] && <span className="shrink-0 text-xs text-[#30a46c]">{data.partTests[p.key].score}/{data.partTests[p.key].total}</span>}
+                    </Link>
+                  </li>
+                </ul>
+              </details>
+            </li>
+          );
+        })}
+      </ul>
 
-      {visibleChapters.length > 0 && (
-        <div>
-          <p className="px-2 text-xs font-semibold uppercase tracking-wide text-[#FFB800]">{ui.rulesHeading}</p>
-          <ul className="mt-1 flex flex-col gap-1">
-            {visibleChapters.map((c) => {
-              const hasActive = c.rules.some((id) => path === `/learn/rules/${ruleSlug(id)}`);
-              const done = c.rules.filter((id) => data.rules[id]).length;
-              return (
-                <li key={`${c.key}-${hasActive}-${needle ? "s" : ""}`}>
-                  <details open={hasActive || !!needle} className="group">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-sm font-semibold text-white hover:bg-[#1F1F1F]">
-                      <span>{ui.chapterNames[c.key]}</span>
-                      <span className="shrink-0 text-xs font-normal text-[#9B9B9B]">
-                        {done}/{c.rules.length}
-                      </span>
-                    </summary>
-                    <ul className="ml-2 mt-1 border-l border-white/10 pl-2">
-                      {c.rules.map((id) => {
-                        const href = `/learn/rules/${ruleSlug(id)}`;
-                        const active = path === href;
-                        return (
-                          <li key={id}>
-                            <Link href={href} onClick={onNavigate} aria-current={active ? "page" : undefined} className={link(href, active)}>
-                              <span>
-                                <span className="mr-1 font-mono text-xs text-[#FFB800]">{clauseLabel(id).replace("Annex 2 · ", "").replace("Annex ", "A")}</span>
-                                {texts[id][0]}
-                              </span>
-                              {data.rules[id] && <CheckCircle size={16} weight="fill" className="mt-0.5 shrink-0 text-[#30a46c]" aria-hidden />}
-                            </Link>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </details>
-                </li>
-              );
-            })}
-          </ul>
-          <Link href="/learn/rules/exam" onClick={onNavigate} className={`mt-2 ${link("/learn/rules/exam", path === "/learn/rules/exam")}`}>
-            {ui.examTitle}
-          </Link>
-        </div>
-      )}
+      <Link href="/learn/rules/exam" onClick={onNavigate} className={row(path === "/learn/rules/exam")}>
+        {ui.examTitle}
+      </Link>
     </div>
   );
 }
@@ -127,7 +119,6 @@ export function LearnSidebar() {
 
   return (
     <>
-      {/* phones: slide down contents */}
       <div className="lg:hidden">
         <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} className="btn btn-ghost w-full justify-between">
           <span className="flex items-center gap-2">

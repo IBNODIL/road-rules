@@ -15,6 +15,7 @@ import {
   ArrowUp,
   CornersIn,
   CornersOut,
+  Keyboard,
   Star,
   VideoCamera,
   Warning,
@@ -34,6 +35,7 @@ import {
 } from "@/lib/sim";
 import { update, useData } from "@/lib/storage";
 import { useI18n } from "@/lib/i18n";
+import type { Dict } from "@/lib/i18n/en";
 
 /* ---------- controls ---------- */
 
@@ -449,6 +451,49 @@ function Scene({
 
 /* ---------- UI ---------- */
 
+/** A floating panel with every control as a key. The keys also work when clicked or touched. */
+function Key({ controls, k, label, hold, onClick, children, wide }: { controls: Controls; k?: string; label: string; hold?: boolean; onClick?: () => void; children: React.ReactNode; wide?: boolean }) {
+  return (
+  <div className="flex items-center gap-2">
+    <button
+      type="button"
+      aria-label={label}
+      onPointerDown={(e) => {
+        e.currentTarget.setPointerCapture(e.pointerId);
+        if (onClick) onClick();
+        else if (k) controls.press(k);
+      }}
+      onPointerUp={() => hold && k && controls.release(k)}
+      onPointerCancel={() => hold && k && controls.release(k)}
+      onContextMenu={(e) => e.preventDefault()}
+      className={`grid h-8 touch-none select-none place-items-center rounded-md border border-white/20 border-b-4 bg-[#272727] text-sm font-bold text-white active:translate-y-0.5 active:border-b-2 active:bg-[#FFB800] active:text-black ${wide ? "min-w-16 px-2" : "w-8"}`}
+    >
+      {children}
+    </button>
+    <span className="text-sm text-[#d8d8d8]">{label}</span>
+  </div>
+);
+}
+
+function KeyPanel({ controls, s, onCentre }: { controls: Controls; s: Dict["sim"]; onCentre: () => void }) {
+  return (
+    <div className="absolute bottom-3 left-3 w-[20rem] rounded-2xl border border-white/10 bg-black/65 p-3 backdrop-blur [@media(pointer:coarse)]:bottom-24" role="group" aria-label={s.controlsTitle}>
+      <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[#FFB800]">{s.controlsTitle}</p>
+      <div className="grid grid-cols-2 gap-x-3 gap-y-1.5">
+        <Key controls={controls} k="w" hold label={s.touchGas}>W</Key>
+        <Key controls={controls} k="s" hold label={s.touchBrake}>S</Key>
+        <Key controls={controls} k="arrowleft" hold label={s.touchLeft}><ArrowLeft size={16} weight="bold" /></Key>
+        <Key controls={controls} k="arrowright" hold label={s.touchRight}><ArrowRight size={16} weight="bold" /></Key>
+        <Key controls={controls} k=" " hold wide label={s.keyHand}>Space</Key>
+        <Key controls={controls} onClick={() => controls.shift(1)} label={s.touchD}><ArrowUp size={16} weight="bold" /></Key>
+        <Key controls={controls} onClick={() => controls.shift(-1)} label={s.touchR}><ArrowDown size={16} weight="bold" /></Key>
+        <Key controls={controls} k="q" hold label={s.keyLook}>Q</Key>
+        <Key controls={controls} onClick={onCentre} label={s.keyCentre}>X</Key>
+      </div>
+    </div>
+  );
+}
+
 function TouchBtn({
   label,
   onDown,
@@ -494,6 +539,7 @@ function Drive({ id, onExit, onNext }: { id: LevelId; onExit: () => void; onNext
   const [result, setResult] = useState<Result | null>(null);
   const [cam, setCam] = useState<0 | 1 | 2>(0);
   const [isFs, setIsFs] = useState(false);
+  const [showKeys, setShowKeys] = useState(true);
   const box = useRef<HTMLDivElement>(null);
 
   const restart = () => {
@@ -613,7 +659,7 @@ function Drive({ id, onExit, onNext }: { id: LevelId; onExit: () => void; onNext
             </span>
             <span className="rounded-lg bg-black/60 px-2 py-1">{Math.round(hud.speed)} km/h</span>
           </div>
-          <div className="pointer-events-none absolute inset-x-0 top-12 flex flex-col items-center gap-2 sm:top-3">
+          <div className="pointer-events-none absolute inset-x-0 top-14 flex flex-col items-center gap-2 lg:top-3">
             <div className="flex items-center gap-2">
               <span
                 className={`rounded-lg px-3 py-1 text-lg font-semibold ${hud.score >= START_SCORE ? "bg-black/60" : hud.score >= PASS_SCORE + 2 ? "bg-[#7a5a00]" : "bg-[#8a2a2d]"}`}
@@ -621,8 +667,17 @@ function Drive({ id, onExit, onNext }: { id: LevelId; onExit: () => void; onNext
               >
                 {s.scoreOf(hud.score)}
               </span>
-              <span className="grid size-9 place-items-center rounded-lg bg-black/60 text-lg font-semibold text-[#FFB800]" aria-label={s.gear}>
-                {hud.gear}
+              <span className="flex gap-1 rounded-xl bg-black/60 p-1" role="img" aria-label={`${s.gear} ${hud.gear}`}>
+                {(["D", "R"] as const).map((g) => (
+                  <span
+                    key={g}
+                    className={`grid size-12 place-items-center rounded-lg text-4xl font-bold leading-none transition-colors duration-300 ${
+                      hud.gear === g ? "bg-[#FFB800] text-black" : "text-white/35"
+                    }`}
+                  >
+                    {g}
+                  </span>
+                ))}
               </span>
             </div>
             {hud.sinceFine < 2 && (
@@ -648,8 +703,13 @@ function Drive({ id, onExit, onNext }: { id: LevelId; onExit: () => void; onNext
           <div className="absolute right-3 top-3 flex gap-2">
             <button type="button" onClick={() => setCam((c) => ((c + 1) % 3) as 0 | 1 | 2)} className="btn btn-ghost !px-2">
               <VideoCamera size={18} aria-hidden />
-              <span className="hidden sm:inline">{s.cams[cam]}</span>
+              <span className="hidden lg:inline">{s.cams[cam]}</span>
               <span className="sr-only">{s.camera}</span>
+            </button>
+            <button type="button" onClick={() => setShowKeys((v) => !v)} aria-pressed={showKeys} className="btn btn-ghost !px-2">
+              <Keyboard size={18} aria-hidden />
+              <span className="hidden lg:inline">{showKeys ? s.hideControls : s.showControls}</span>
+              <span className="sr-only lg:hidden">{showKeys ? s.hideControls : s.showControls}</span>
             </button>
             <button type="button" onClick={toggleFs} className="btn btn-ghost !px-2" aria-label={isFs ? s.exitFullscreen : s.fullscreen}>
               {isFs ? <CornersIn size={18} aria-hidden /> : <CornersOut size={18} aria-hidden />}
@@ -658,6 +718,8 @@ function Drive({ id, onExit, onNext }: { id: LevelId; onExit: () => void; onNext
               <ArrowCounterClockwise size={18} aria-hidden />
             </button>
           </div>
+
+          {showKeys && <KeyPanel controls={controls} s={s} onCentre={() => look.center()} />}
 
           {/* touch controls */}
           <div className="absolute inset-x-3 bottom-3 flex items-end justify-between [@media(pointer:fine)]:hidden">
@@ -671,10 +733,10 @@ function Drive({ id, onExit, onNext }: { id: LevelId; onExit: () => void; onNext
             </div>
             <div className="flex gap-2">
               <TouchBtn label={s.touchD} onDown={() => controls.shift(1)}>
-                D
+                <span className="text-3xl font-bold">D</span>
               </TouchBtn>
               <TouchBtn label={s.touchR} onDown={() => controls.shift(-1)}>
-                R
+                <span className="text-3xl font-bold">R</span>
               </TouchBtn>
               <TouchBtn label={s.touchBrake} onDown={() => controls.setBrake(true)} onUp={() => controls.setBrake(false)}>
                 <ArrowDown size={24} />

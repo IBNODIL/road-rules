@@ -31,6 +31,36 @@ type Ui = {
   history: string;
   noHistory: string;
   contents: string;
+  partOf: (n: number, t: number) => string;
+  keyPoints: string;
+  practice: string;
+  tag: (kind: "clause" | "annex2" | "annex3" | "def", n: string) => string;
+  testTitle: string;
+  testSub: string;
+  testLabel: string;
+  testOpenBody: string;
+  testOpen: string;
+  backToChapter: string;
+  readOf: (n: number, t: number) => string;
+  chapterTestScore: (s: number, t: number) => string;
+  notTaken: string;
+  readStat: string;
+  chapterTests: string;
+  overall: string;
+  chaptersHeading: string;
+  testScore: (s: number, t: number) => string;
+  testDone: string;
+  nextPart: string;
+  prevPart: string;
+  scrollHint: string;
+  lessonsTestBody: string;
+  openTest: string;
+  markComplete: string;
+  completed: string;
+  startPart: string;
+  parts: string;
+  unitLessons: string;
+  unitRules: string;
   lessonsHeading: string;
   rulesHeading: string;
   prev: string;
@@ -52,6 +82,36 @@ export const rulesUi: Record<Lang, Ui> = {
     progress: (n, t) => `${n} of ${t} rules answered correctly`,
     chapters: "Chapters",
     contents: "Contents",
+    partOf: (n, t) => `Part ${n} of ${t}`,
+    keyPoints: "Key points",
+    practice: "In practice",
+    tag: (kind, n) => (kind === "clause" ? `Clause ${n}` : kind === "annex2" ? (n ? `Annex 2, line ${n}` : "Annex 2") : kind === "annex3" ? "Annex 3" : "Definitions"),
+    testTitle: "Chapter test",
+    testSub: "One question for every lesson of the chapter. Answer them all, then check what you missed.",
+    testLabel: "Test",
+    testOpenBody: "Ready to check yourself? The test opens on its own page, so the answers are not visible while you read.",
+    testOpen: "Take the chapter test",
+    backToChapter: "Back to the chapter",
+    readOf: (n, t) => `${n} of ${t} read`,
+    chapterTestScore: (s, t) => `Test: ${s}/${t}`,
+    notTaken: "Test not taken",
+    readStat: "Course read",
+    chapterTests: "Chapter tests done",
+    overall: "Overall progress",
+    chaptersHeading: "Chapters",
+    testScore: (s, t) => `${s} of ${t} correct`,
+    testDone: "Chapter finished",
+    nextPart: "Next chapter",
+    prevPart: "Previous chapter",
+    scrollHint: "Keep scrolling for the next lesson",
+    lessonsTestBody: "Check what you learned on the 3D schemas of the practice test.",
+    openTest: "Open the practice test",
+    markComplete: "Mark lesson complete",
+    completed: "Completed",
+    startPart: "Start chapter",
+    parts: "Chapters",
+    unitLessons: "lessons",
+    unitRules: "rules",
     lessonsHeading: "Lessons",
     rulesHeading: "Rules",
     prev: "Previous rule",
@@ -77,6 +137,7 @@ export const rulesUi: Record<Lang, Ui> = {
     history: "Exam history",
     noHistory: "No rules exams yet.",
     chapterNames: {
+      lessons: "Lessons",
       general: "General provisions",
       drivers: "Driver duties",
       accident: "After an accident",
@@ -121,6 +182,36 @@ export const rulesUi: Record<Lang, Ui> = {
     progress: (n, t) => `Верно отвечено правил: ${n} из ${t}`,
     chapters: "Главы",
     contents: "Содержание",
+    partOf: (n, t) => `Глава ${n} из ${t}`,
+    keyPoints: "Главное",
+    practice: "На практике",
+    tag: (kind, n) => (kind === "clause" ? `Пункт ${n}` : kind === "annex2" ? (n ? `Приложение 2, линия ${n}` : "Приложение 2") : kind === "annex3" ? "Приложение 3" : "Определения"),
+    testTitle: "Тест главы",
+    testSub: "По одному вопросу на каждый урок главы. Ответьте на все, затем проверьте, что упустили.",
+    testLabel: "Тест",
+    testOpenBody: "Готовы проверить себя? Тест открывается на отдельной странице, чтобы ответы не были видны во время чтения.",
+    testOpen: "Пройти тест главы",
+    backToChapter: "Назад к главе",
+    readOf: (n, t) => `Прочитано ${n} из ${t}`,
+    chapterTestScore: (s, t) => `Тест: ${s}/${t}`,
+    notTaken: "Тест не пройден",
+    readStat: "Курс прочитан",
+    chapterTests: "Тестов глав пройдено",
+    overall: "Общий прогресс",
+    chaptersHeading: "Главы",
+    testScore: (s, t) => `Верно ${s} из ${t}`,
+    testDone: "Глава пройдена",
+    nextPart: "Следующая глава",
+    prevPart: "Предыдущая глава",
+    scrollHint: "Прокручивайте дальше к следующему уроку",
+    lessonsTestBody: "Проверьте, что усвоили, на 3D схемах тренировочного теста.",
+    openTest: "Открыть тренировочный тест",
+    markComplete: "Отметить урок пройденным",
+    completed: "Пройден",
+    startPart: "Начать главу",
+    parts: "Главы",
+    unitLessons: "уроков",
+    unitRules: "правил",
     lessonsHeading: "Уроки",
     rulesHeading: "Правила",
     prev: "Предыдущее правило",
@@ -146,6 +237,7 @@ export const rulesUi: Record<Lang, Ui> = {
     history: "История экзаменов",
     noHistory: "Экзаменов по правилам пока нет.",
     chapterNames: {
+      lessons: "Уроки",
       general: "Общие положения",
       drivers: "Обязанности водителей",
       accident: "Действия при ДТП",
@@ -190,6 +282,36 @@ export const rulesUi: Record<Lang, Ui> = {
     progress: (n, t) => `${t} ta qoidadan ${n} tasiga to'g'ri javob berilgan`,
     chapters: "Boblar",
     contents: "Mundarija",
+    partOf: (n, t) => `${t} tadan ${n}-bob`,
+    keyPoints: "Asosiy fikrlar",
+    practice: "Amalda",
+    tag: (kind, n) => (kind === "clause" ? `${n}-band` : kind === "annex2" ? (n ? `2-ilova, ${n} chiziq` : "2-ilova") : kind === "annex3" ? "3-ilova" : "Ta'riflar"),
+    testTitle: "Bob testi",
+    testSub: "Bobning har bir darsi uchun bittadan savol. Hammasiga javob bering, so'ng xatolaringizni tekshiring.",
+    testLabel: "Test",
+    testOpenBody: "O'zingizni tekshirishga tayyormisiz? Test alohida sahifada ochiladi, shuning uchun o'qish paytida javoblar ko'rinmaydi.",
+    testOpen: "Bob testini topshirish",
+    backToChapter: "Bobga qaytish",
+    readOf: (n, t) => `${t} tadan ${n} tasi o'qildi`,
+    chapterTestScore: (s, t) => `Test: ${s}/${t}`,
+    notTaken: "Test topshirilmagan",
+    readStat: "Kurs o'qildi",
+    chapterTests: "Topshirilgan bob testlari",
+    overall: "Umumiy progress",
+    chaptersHeading: "Boblar",
+    testScore: (s, t) => `${t} tadan ${s} ta to'g'ri`,
+    testDone: "Bob tugadi",
+    nextPart: "Keyingi bob",
+    prevPart: "Oldingi bob",
+    scrollHint: "Keyingi dars uchun pastga aylantiring",
+    lessonsTestBody: "O'rganganlaringizni mashq testining 3D sxemalarida sinab ko'ring.",
+    openTest: "Mashq testini ochish",
+    markComplete: "Darsni tugallangan deb belgilash",
+    completed: "Tugallandi",
+    startPart: "Bobni boshlash",
+    parts: "Boblar",
+    unitLessons: "ta dars",
+    unitRules: "ta qoida",
     lessonsHeading: "Darslar",
     rulesHeading: "Qoidalar",
     prev: "Oldingi qoida",
@@ -215,6 +337,7 @@ export const rulesUi: Record<Lang, Ui> = {
     history: "Imtihonlar tarixi",
     noHistory: "Hali qoidalar imtihoni topshirilmagan.",
     chapterNames: {
+      lessons: "Darslar",
       general: "Umumiy qoidalar",
       drivers: "Haydovchilarning umumiy vazifalari",
       accident: "Yo'l-transport hodisasi sodir bo'lganda",

@@ -27,12 +27,16 @@ export type Data = {
   sim: Record<string, SimScore>;
   /** Rule id -> answered correctly the last time. */
   rules: Record<string, boolean>;
+  /** Lessons ("lesson:slug") and rules (rule id) the reader has scrolled through. */
+  read: string[];
+  /** Best score of each chapter test, by chapter key. */
+  partTests: Record<string, { score: number; total: number }>;
   ruleExams: Attempt[];
   attempts: Attempt[];
   active: ActiveTest | null;
 };
 
-const EMPTY: Data = { completed: [], sim: {}, rules: {}, ruleExams: [], attempts: [], active: null };
+const EMPTY: Data = { completed: [], sim: {}, rules: {}, read: [], partTests: {}, ruleExams: [], attempts: [], active: null };
 
 let cache: { raw: string | null; data: Data } = { raw: null, data: EMPTY };
 const listeners = new Set<() => void>();

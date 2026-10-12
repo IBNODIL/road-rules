@@ -265,6 +265,12 @@ export const questions: Question[] = [
     answer: 0,
   },
   {
+    id: "marking-solid",
+    lesson: "road-markings",
+    scene: { arms: ["N", "S"], cars: [{ id: "A", label: "A", from: "S", color: BLUE, free: true, distance: 10 }] },
+    answer: 1,
+  },
+  {
     id: "warning-triangle",
     lesson: "parking",
     scene: { arms: ["N", "S"], cars: [{ id: "A", label: "A", from: "S", color: AMBER, hold: true }] },

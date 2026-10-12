@@ -28,7 +28,7 @@ export function HomeView() {
           </Reveal>
           <Reveal delay={200}>
             <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link href="/learn/road-signs" className="btn btn-primary">
+              <Link href="/learn/part/lessons" className="btn btn-primary">
                 {h.cta}
                 <ArrowRight size={18} weight="bold" aria-hidden />
               </Link>
@@ -153,7 +153,7 @@ export function HomeView() {
           <div className="rounded-2xl border border-white/10 bg-[#181818] px-6 py-16 text-center">
             <h2 className="mx-auto max-w-[680px] text-4xl font-semibold md:text-5xl">{h.finalTitle}</h2>
             <p className="mx-auto mt-4 max-w-[680px] text-lg text-[#9B9B9B]">{h.finalSub}</p>
-            <Link href="/learn/road-signs" className="btn btn-primary mt-8">
+            <Link href="/learn/part/lessons" className="btn btn-primary mt-8">
               {h.cta}
               <ArrowRight size={18} weight="bold" aria-hidden />
             </Link>

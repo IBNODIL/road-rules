@@ -3,7 +3,10 @@
 import Link from "next/link";
 import { useState } from "react";
 import { ArrowRight, CheckCircle, XCircle, Trophy, ArrowCounterClockwise, X } from "@phosphor-icons/react";
-import { PASS_MARK, TEST_LENGTH, lessonBySlug, questionById, questionText, questions } from "@/lib/content";
+import { PASS_MARK, lessonBySlug, questions } from "@/lib/content";
+import { findQuestion, findQuestionText, ruleQuestions } from "@/lib/ruleQuestions";
+import { chapterOf, clauseRef, lessonHref, partKeys, ruleHref, ruleNumber } from "@/lib/rules/data";
+import { rulesUi } from "@/lib/rules/ui";
 import { update, useData, useReady, type Attempt } from "@/lib/storage";
 import { useI18n } from "@/lib/i18n";
 import { RoadScene, SignStage } from "@/components/three/lazy";
@@ -18,7 +21,8 @@ const shuffle = <T,>(arr: T[]) => {
 };
 
 const fmtTime = (s: number) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}`;
-const passAt = Math.round(PASS_MARK * TEST_LENGTH);
+const passFor = (total: number) => Math.round(PASS_MARK * total);
+const pickOne = <T,>(arr: T[]) => arr[Math.floor(Math.random() * arr.length)];
 
 function Header() {
   const { t } = useI18n();
@@ -31,7 +35,8 @@ function Header() {
 }
 
 export function TestRunner() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
+  const ru = rulesUi[lang];
   const data = useData();
   const ready = useReady();
   const [result, setResult] = useState<Attempt | null>(null);
@@ -39,7 +44,10 @@ export function TestRunner() {
 
   const start = () => {
     setResult(null);
-    const ids = shuffle(questions).slice(0, TEST_LENGTH).map((q) => q.id);
+    /* one question from every chapter, the lessons chapter included */
+    const ids = shuffle(
+      partKeys.map((key) => (key === "lessons" ? pickOne(questions) : pickOne(ruleQuestions.filter((q) => chapterOf(q.rule!).key === key)))),
+    ).map((q) => q.id);
     update((d) => ({
       ...d,
       active: { ids, answers: ids.map(() => null), idx: 0, startedAt: Date.now() },
@@ -63,7 +71,7 @@ export function TestRunner() {
     const wrong: string[] = [];
     let score = 0;
     active.ids.forEach((id, i) => {
-      if (questionById(id)?.answer === active.answers[i]) score++;
+      if (findQuestion(id)?.answer === active.answers[i]) score++;
       else wrong.push(id);
     });
     const attempt: Attempt = {
@@ -96,7 +104,7 @@ export function TestRunner() {
           <Trophy size={40} weight="fill" className={passed ? "text-[#FFB800]" : "text-[#9B9B9B]"} aria-hidden />
           <h2 className="text-4xl font-semibold">{t.test.scoreTitle(result.score, result.total)}</h2>
           <p className="max-w-[680px] text-lg text-[#9B9B9B]" role="status">
-            {passed ? t.test.passed(fmtTime(result.seconds), passAt) : t.test.failed(passAt)}
+            {passed ? t.test.passed(fmtTime(result.seconds), passFor(result.total)) : t.test.failed(passFor(result.total))}
           </p>
           <button type="button" className="btn btn-primary" onClick={start}>
             <ArrowCounterClockwise size={18} aria-hidden />
@@ -110,9 +118,9 @@ export function TestRunner() {
             </h3>
             <ul className="mt-4 flex flex-col gap-2">
               {result.wrong.map((id) => {
-                const q = questionById(id)!;
-                const qt = questionText(q, t);
-                const l = lessonBySlug(q.lesson);
+                const q = findQuestion(id)!;
+                const qt = findQuestionText(q, t, lang);
+                const l = q.rule ? undefined : lessonBySlug(q.lesson);
                 return (
                   <li key={id} className="rounded-lg border border-white/10 bg-[#181818] p-4">
                     <p className="text-base font-semibold">{qt.text}</p>
@@ -120,8 +128,13 @@ export function TestRunner() {
                       {t.test.correctAnswer}: {qt.options[q.answer]}
                     </p>
                     <p className="mt-1 text-sm text-[#9B9B9B]">{qt.explanation}</p>
+                    {q.rule && (
+                      <Link href={ruleHref(q.rule)} className="mt-2 inline-block text-sm font-semibold text-[#FFB800] hover:underline">
+                        {ru.readRule} {ruleNumber(q.rule)}
+                      </Link>
+                    )}
                     {l && (
-                      <Link href={`/learn/${l.slug}`} className="mt-2 inline-block text-sm font-semibold text-[#FFB800] hover:underline">
+                      <Link href={lessonHref(l.slug)} className="mt-2 inline-block text-sm font-semibold text-[#FFB800] hover:underline">
                         {t.test.openLesson(t.lessons[l.slug].title)}
                       </Link>
                     )}
@@ -137,12 +150,12 @@ export function TestRunner() {
 
   /* ----- running ----- */
   if (active) {
-    const q = questionById(active.ids[active.idx]);
+    const q = findQuestion(active.ids[active.idx]);
     if (!q) {
       abandon();
       return null;
     }
-    const qt = questionText(q, t);
+    const qt = findQuestionText(q, t, lang);
     const chosen = active.answers[active.idx];
     const answered = chosen !== null;
     const last = active.idx === active.ids.length - 1;
@@ -181,8 +194,17 @@ export function TestRunner() {
                 label={t.test.sceneLabel(qt.text)}
                 className="h-[360px] w-full rounded-lg md:h-[460px]"
               />
+            ) : q.sign ? (
+              <SignStage key={q.id} type={q.sign} className="h-[360px] w-full overflow-hidden rounded-lg md:h-[460px]" />
             ) : (
-              <SignStage key={q.id} type={q.sign!} className="h-[360px] w-full overflow-hidden rounded-lg md:h-[460px]" />
+              <div className="grid h-[360px] place-items-center rounded-lg bg-[#131209] p-6 text-center md:h-[460px]">
+                <div>
+                  <p className="font-mono text-sm text-[#FFB800]">
+                    {ruleNumber(q.rule!)} · {ru.tag(clauseRef(q.rule!).kind, clauseRef(q.rule!).n)}
+                  </p>
+                  <p className="mt-3 text-3xl font-semibold">{ru.chapterNames[chapterOf(q.rule!).key]}</p>
+                </div>
+              </div>
             )}
           </div>
 
@@ -247,7 +269,7 @@ export function TestRunner() {
   return wrap(
     <div className="card flex flex-col items-start gap-6">
       <h2 className="max-w-[680px] text-3xl font-semibold">{t.test.introTitle}</h2>
-      <p className="max-w-[680px] text-lg text-[#9B9B9B]">{t.test.introBody(questions.length, passAt)}</p>
+      <p className="max-w-[680px] text-lg text-[#9B9B9B]">{t.test.introBody(questions.length + ruleQuestions.length, passFor(partKeys.length))}</p>
       <p className="text-sm text-[#9B9B9B]">
         {data.attempts.length === 0 ? t.test.noAttempts : t.test.attemptsBest(data.attempts.length, Math.round(best * 100))}
       </p>

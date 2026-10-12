@@ -41,16 +41,6 @@ export const chapters: { key: string; rules: string[] }[] = [
 
 export const allRuleIds = chapters.flatMap((c) => c.rules);
 
-/** Label shown on the clause badge. */
-export function clauseLabel(id: string): string {
-  if (id.startsWith("d-")) return "§ 6";
-  if (id.startsWith("m")) return id === "m-conflict" ? "Annex 2" : `Annex 2 · ${id.slice(1)}`;
-  if (id.startsWith("t-")) return "Annex 3";
-  if (id.startsWith("pmd")) return `${id.slice(3)}¹`;
-  if (id === "1152") return "115²";
-  return id.replace(/[a-z]$/, "");
-}
-
 /** Deterministic shuffle of the three options so the right answer is not always first. */
 export function permutation(id: string): [number, number, number] {
   let h = 7;
@@ -75,3 +65,38 @@ export function buildQuiz(id: string, options: [string, string, string]): RuleQu
 export const ruleSlug = (id: string) => id.split(".").join("-");
 export const ruleIdFromSlug = (slug: string) => allRuleIds.find((id) => ruleSlug(id) === slug);
 export const chapterOf = (id: string) => chapters.find((c) => c.rules.includes(id))!;
+
+/* ---------- parts, numbering and links ---------- */
+
+/** The first part is the 3D lessons ("Darslar"), then one part per rule chapter. */
+export const partKeys = ["lessons", ...chapters.map((c) => c.key)];
+
+/** Part number, starting at 1 with the lessons. */
+export const partNumber = (key: string) => partKeys.indexOf(key) + 1;
+
+/** Number of a rule inside the whole course, such as "5.3": part 5, third lesson. */
+export function ruleNumber(id: string): string {
+  const ch = chapterOf(id);
+  return `${partNumber(ch.key)}.${ch.rules.indexOf(id) + 1}`;
+}
+
+export const lessonNumber = (index: number) => `1.${index + 1}`;
+
+export const testHref = (key: string) => `/learn/part/${key}/test`;
+export const partHref = (key: string) => `/learn/part/${key}`;
+export const ruleHref = (id: string) => `${partHref(chapterOf(id).key)}#rule-${ruleSlug(id)}`;
+export const lessonHref = (slug: string) => `${partHref("lessons")}#lesson-${slug}`;
+
+/** Clause reference of the official text, kept apart from the course numbering. */
+export function clauseRef(id: string): { kind: "clause" | "annex2" | "annex3" | "def"; n: string } {
+  if (id.startsWith("d-")) return { kind: "def", n: "6" };
+  if (id.startsWith("m") && id !== "m-conflict") return { kind: "annex2", n: id.slice(1).replace(/-/g, ".") };
+  if (id === "m-conflict") return { kind: "annex2", n: "" };
+  if (id.startsWith("t-")) return { kind: "annex3", n: "" };
+  if (id === "1152") return { kind: "clause", n: "115²" };
+  if (id.startsWith("pmd")) return { kind: "clause", n: `${id.slice(3)}¹` };
+  return { kind: "clause", n: id.replace(/[a-z]$/, "") };
+}
+
+/** A lesson or rule counts as done once it has been read, or answered correctly in a test. */
+export const isRead = (read: string[], rules: Record<string, boolean>, id: string) => read.includes(id) || !!rules[id];

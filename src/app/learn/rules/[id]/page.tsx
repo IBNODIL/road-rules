@@ -1,21 +1,14 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { RulePage } from "@/components/RulePage";
-import { allRuleIds, ruleIdFromSlug, ruleSlug } from "@/lib/rules/data";
-import { textEn } from "@/lib/rules/text.en";
+import { notFound, redirect } from "next/navigation";
+import { allRuleIds, ruleHref, ruleIdFromSlug, ruleSlug } from "@/lib/rules/data";
 
+/* A chapter is one page now. Old rule links land on the right lesson of that chapter. */
 export function generateStaticParams() {
   return allRuleIds.map((id) => ({ id: ruleSlug(id) }));
 }
 
-export async function generateMetadata({ params }: PageProps<"/learn/rules/[id]">): Promise<Metadata> {
+export default async function RuleRedirect({ params }: PageProps<"/learn/rules/[id]">) {
   const { id } = await params;
   const rid = ruleIdFromSlug(id);
-  return rid ? { title: textEn[rid][0], description: textEn[rid][1] } : {};
-}
-
-export default async function RuleRoute({ params }: PageProps<"/learn/rules/[id]">) {
-  const { id } = await params;
-  if (!ruleIdFromSlug(id)) notFound();
-  return <RulePage slug={id} />;
+  if (!rid) notFound();
+  redirect(ruleHref(rid));
 }
