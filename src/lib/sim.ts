@@ -32,11 +32,21 @@ export type Level = {
   asphalt: { x: number; z: number; w: number; d: number };
   /** Optional asphalt outline as [x, z] points. When set it replaces the rectangle. */
   poly?: [number, number][];
+  /** False when the painted lines are only guides and crossing them costs nothing. Defaults to true. */
+  lineFines?: boolean;
   center: [number, number];
 };
 
 export const START_SCORE = 10;
 export const LINE_FINE = 2;
+/** Cost of a signal or hazard light violation. */
+export const RULE_FINE = 1;
+/** A forward turn of more than this (25 degrees) needs the turn signal on. */
+const TURN_LIMIT = (25 * Math.PI) / 180;
+/** Reversing further than this (metres) needs the hazard lights on. */
+const REVERSE_FREE = 1;
+/** Signals and hazards are not needed once this share of the car is inside the bay. */
+const BAY_FREE_SHARE = 0.2;
 /** The exam stops as failed when the score drops below this. */
 export const PASS_SCORE = 6;
 
@@ -82,6 +92,7 @@ function perpendicular(): Level {
   const bounds = [-2.5, -1.5, -0.5, 0.5, 1.5, 2.5].map((k) => k * pitch);
   return {
     id: "perpendicular",
+    lineFines: false,
     start: { x: 11, z: 2.2, theta: -Math.PI / 2 },
     bay: { cx: 0, cz: rowZ, hw: 1.4, hl: 2.6, rot: angle },
     obstacles: [
@@ -216,6 +227,10 @@ export type Input = {
   /** -1 right, +1 left. */
   steer: number;
   handbrake: boolean;
+  /** Lights lever: 0 off, 1 left, 2 right, 3 hazards. */
+  signal: 0 | 1 | 2 | 3;
+  /** One shot request to end the exam, honoured only while the car is parked and held still. */
+  finish: boolean;
   /** One shot gear request: +1 selects D, -1 selects R. */
   shift: -1 | 0 | 1;
 };
@@ -230,7 +245,12 @@ export type Hud = {
   /** Seconds since the last line fine and since the last refused gear change. */
   sinceFine: number;
   sinceDenied: number;
+  fineKind: FineKind;
+  /** Parked and held still, so the exam can be finished. */
+  ready: boolean;
 };
+
+export type FineKind = "line" | "signal" | "hazard";
 
 export type EndReason = "parked" | "crash" | "fines";
 
@@ -241,6 +261,7 @@ export type Result = {
   stars: number;
   seconds: number;
   linesCrossed: number;
+  ruleFines: number;
   askew: number;
   angle: number;
   offset: number;
@@ -264,6 +285,13 @@ export class Game {
   gear: Gear = "D";
   score = START_SCORE;
   linesCrossed = 0;
+  ruleFines = 0;
+  fineKind: FineKind = "line";
+  turnAcc = 0;
+  turnLatch = false;
+  revDist = 0;
+  revLatch = false;
+  ready = false;
   fineAt = -99;
   deniedAt = -99;
   clock = 0;
@@ -292,6 +320,13 @@ export class Game {
     this.gear = "D";
     this.score = START_SCORE;
     this.linesCrossed = 0;
+    this.ruleFines = 0;
+    this.fineKind = "line";
+    this.turnAcc = 0;
+    this.turnLatch = false;
+    this.revDist = 0;
+    this.revLatch = false;
+    this.ready = false;
     this.fineAt = -99;
     this.deniedAt = -99;
     this.clock = 0;
@@ -329,6 +364,33 @@ export class Game {
     });
   }
 
+  /** Share of the car's footprint that lies inside the bay, 0 to 1. */
+  private bayShare() {
+    const NX = 6;
+    const NZ = 12;
+    const s = Math.sin(this.theta);
+    const c = Math.cos(this.theta);
+    const b = this.level.bay;
+    let n = 0;
+    for (let i = 0; i < NX; i++) {
+      for (let j = 0; j < NZ; j++) {
+        const lx = -CAR_HW + ((i + 0.5) / NX) * 2 * CAR_HW;
+        const lz = -CAR_HL + ((j + 0.5) / NZ) * 2 * CAR_HL;
+        const [bx, bz] = this.bayLocal(this.x + lx * c + lz * s, this.z - lx * s + lz * c);
+        if (Math.abs(bx) <= b.hw && Math.abs(bz) <= b.hl) n++;
+      }
+    }
+    return n / (NX * NZ);
+  }
+
+  private fine(kind: FineKind, points: number) {
+    this.score -= points;
+    this.fineKind = kind;
+    this.fineAt = this.clock;
+    if (kind === "line") this.linesCrossed++;
+    else this.ruleFines++;
+  }
+
   private end(reason: EndReason, askew = 0): Result {
     this.finished = true;
     this.v = 0;
@@ -342,6 +404,7 @@ export class Game {
       stars: !passed ? 0 : score >= 10 ? 3 : score >= 8 ? 2 : 1,
       seconds: Math.round(this.time),
       linesCrossed: this.linesCrossed,
+      ruleFines: this.ruleFines,
       askew,
       angle: Math.round(angleDeg * 10) / 10,
       offset: Math.round(this.offset() * 100) / 100,
@@ -404,14 +467,39 @@ export class Game {
       }
     }
 
+    // turn signal: one forward turn of more than 25 degrees needs the matching signal on
+    if (this.v > 0.1 && Math.abs(this.steer) > 0.03) {
+      if (!this.turnLatch) {
+        this.turnAcc += this.theta - pt;
+        if (Math.abs(this.turnAcc) > TURN_LIMIT) {
+          const need = this.turnAcc > 0 ? 1 : 2;
+          if (inp.signal !== need && this.bayShare() < BAY_FREE_SHARE) this.fine("signal", RULE_FINE);
+          this.turnLatch = true;
+          this.turnAcc = 0;
+        }
+      }
+    } else if (Math.abs(this.steer) <= 0.03) {
+      this.turnAcc = 0;
+      this.turnLatch = false;
+    }
+
+    // hazard lights: reversing further than a metre needs them on
+    if (this.gear === "D" || inp.signal === 3) {
+      this.revDist = 0;
+      this.revLatch = false;
+    } else if (this.v < -0.05 && !this.revLatch) {
+      this.revDist += -this.v * dt;
+      if (this.revDist > REVERSE_FREE && this.bayShare() < BAY_FREE_SHARE) {
+        this.fine("hazard", RULE_FINE);
+        this.revLatch = true;
+      }
+    }
+
     // painted lines: each new contact with a solid line costs points
+    const linesCount = this.level.lineFines !== false;
     for (let i = 0; i < this.lineBox.length; i++) {
       const hit = overlap(me, this.lineBox[i], this.theta, this.level.lines[i].rot ?? 0);
-      if (hit && !this.touching[i] && this.level.lines[i].solid) {
-        this.score -= LINE_FINE;
-        this.linesCrossed++;
-        this.fineAt = this.clock;
-      }
+      if (hit && !this.touching[i] && this.level.lines[i].solid && linesCount) this.fine("line", LINE_FINE);
       this.touching[i] = hit;
     }
     if (this.score < PASS_SCORE) return this.end("fines");
@@ -421,7 +509,9 @@ export class Game {
     if (this.inBay && Math.abs(this.v) < 0.15) this.hold += dt;
     else this.hold = 0;
 
-    if (this.hold >= HOLD_TIME) {
+    // holding still in the bay unlocks the Finish button, the exam only ends when it is pressed
+    this.ready = this.hold >= HOLD_TIME;
+    if (inp.finish && this.ready) {
       const deg = (this.angle() * 180) / Math.PI;
       return this.end("parked", deg > 7 ? 2 : deg > 3 ? 1 : 0);
     }
@@ -438,6 +528,8 @@ export class Game {
       hold: Math.min(this.hold / HOLD_TIME, 1),
       sinceFine: this.clock - this.fineAt,
       sinceDenied: this.clock - this.deniedAt,
+      fineKind: this.fineKind,
+      ready: this.ready,
     };
   }
 }
