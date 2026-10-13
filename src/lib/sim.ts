@@ -2,8 +2,9 @@
    World units are metres. Forward vector for heading θ is (sin θ, cos θ),
    so θ = 0 faces +z (toward the viewer) and θ = π faces −z (up the screen). */
 
-export type LevelId = "perpendicular" | "parallel" | "garage";
-export const levelIds: LevelId[] = ["perpendicular", "parallel", "garage"];
+export type LevelId = "perpendicular" | "reverseBay" | "parallel" | "tightParallel" | "garage" | "carPark" | "coneCourse";
+/** In the order they are offered, from the easiest to the hardest. */
+export const levelIds: LevelId[] = ["perpendicular", "reverseBay", "parallel", "tightParallel", "garage", "carPark", "coneCourse"];
 
 export type Obstacle = {
   x: number;
@@ -19,8 +20,9 @@ export type Obstacle = {
 
 export type Bay = { cx: number; cz: number; hw: number; hl: number; rot: number };
 
-/** A painted line segment. Solid (unbroken) lines cost points when crossed, dashed ones do not. */
-export type Line = { x: number; z: number; w: number; l: number; solid: boolean; rot?: number };
+/** A painted line segment. Solid (unbroken) lines cost points when crossed, dashed ones do not.
+    A line that marks the edge of the bay (`bay`) never costs points: it is part of parking. */
+export type Line = { x: number; z: number; w: number; l: number; solid: boolean; rot?: number; bay?: boolean };
 
 export type Level = {
   id: LevelId;
@@ -160,8 +162,100 @@ function garage(): Level {
   };
 }
 
+/** Straight 90 degree bays along a wall: back in between two parked cars from the lane. */
+function reverseBay(): Level {
+  const rowZ = -4.6;
+  const pitch = 2.7; // one bay is 2.7 m wide
+  const occupied = [-3, -2, -1, 1, 2, 3].map((k) => k * pitch);
+  return {
+    id: "reverseBay",
+    start: { x: 12.5, z: 2.6, theta: -Math.PI / 2 },
+    bay: { cx: 0, cz: rowZ, hw: 1.35, hl: 2.6, rot: 0 },
+    obstacles: [wall(0, -7.6, 13, 0.3), ...occupied.map((x, i) => car(x, rowZ, 0, i)), cone(-12.5, 3), cone(-12.5, 0.5)],
+    lines: [
+      ...[-1.35, 1.35].map((x): Line => ({ x, z: rowZ, w: 0.12, l: 5.2, solid: true, bay: true })),
+      ...dashesX(-14, 14, 5.6),
+    ],
+    asphalt: { x: 0, z: 1, w: 30, d: 17 },
+    center: [0, 0],
+  };
+}
+
+/** Parallel parking in a gap about one and a half car lengths long, with cars parked across the street. */
+function tightParallel(): Level {
+  return {
+    id: "tightParallel",
+    start: { x: 13, z: -0.5, theta: -Math.PI / 2 },
+    bay: { cx: 0, cz: -4.5, hw: 1.3, hl: 3.2, rot: Math.PI / 2 },
+    obstacles: [
+      wall(0, -6.3, 20, 0.3),
+      car(-5.3, -4.5, Math.PI / 2, 0),
+      car(5.3, -4.5, Math.PI / 2, 2),
+      car(-12.5, -4.5, Math.PI / 2, 3),
+      car(-4, 4.3, Math.PI / 2, 4),
+      car(6.5, 4.3, -Math.PI / 2, 1),
+      cone(15.5, -4.5),
+    ],
+    lines: dashesX(-20, 20, 0.8),
+    asphalt: { x: 0, z: -0.5, w: 40, d: 14 },
+    center: [0, -1],
+  };
+}
+
+/** A car park: an aisle only about 6.5 m wide with cars on both sides and pillars, and a bay to back into. */
+function carPark(): Level {
+  const pitch = 2.7;
+  const top = [-3, -2, -1, 1, 2, 3].map((k) => k * pitch);
+  const bottom = [-3, -1, 0, 2, 3].map((k) => k * pitch);
+  const pillar = (x: number, z: number): Obstacle => ({ x, z, hw: 0.3, hl: 0.3, rot: 0, kind: "wall", height: 2.6 });
+  return {
+    id: "carPark",
+    start: { x: 14.5, z: 1.5, theta: -Math.PI / 2 },
+    bay: { cx: 0, cz: -4.6, hw: 1.35, hl: 2.6, rot: 0 },
+    obstacles: [
+      wall(0, -7.6, 18, 0.3, 2.6),
+      wall(0, 9.9, 18, 0.3, 2.6),
+      wall(-18, 1.1, 0.3, 9, 2.6),
+      wall(18, 1.1, 0.3, 9, 2.6),
+      ...top.map((x, i) => car(x, -4.6, 0, i)),
+      ...bottom.map((x, i) => car(x, 6.7, Math.PI, i + 2)),
+      pillar(-9.45, -2.3),
+      pillar(-4.05, -2.3),
+      pillar(4.05, -2.3),
+      pillar(9.45, -2.3),
+      pillar(-6.75, 4.5),
+      pillar(6.75, 4.5),
+    ],
+    lines: [...[-1.35, 1.35].map((x): Line => ({ x, z: -4.6, w: 0.12, l: 5.2, solid: true, bay: true })), ...dashesX(-16, 16, 1.4)],
+    asphalt: { x: 0, z: 1.1, w: 36, d: 19 },
+    center: [0, 1],
+  };
+}
+
+/** Three gates of cones to weave through, then forward into a box between low walls. */
+function coneCourse(): Level {
+  const gate = (x: number, z: number): Obstacle[] => [cone(x, z - 1.6), cone(x, z + 1.6)];
+  return {
+    id: "coneCourse",
+    lineFines: false,
+    start: { x: -16, z: 4, theta: Math.PI / 2 },
+    bay: { cx: 15.4, cz: 4, hw: 1.5, hl: 3.0, rot: Math.PI / 2 },
+    obstacles: [
+      ...gate(-9, 4.8),
+      ...gate(0, 3.2),
+      ...gate(9, 4.8),
+      wall(15.4, 2.3, 3.2, 0.2, 1),
+      wall(15.4, 5.7, 3.2, 0.2, 1),
+      wall(18.6, 4, 0.2, 1.9, 1),
+    ],
+    lines: dashesX(12.8, 17.6, 4),
+    asphalt: { x: 0, z: 4, w: 40, d: 14 },
+    center: [0, 4],
+  };
+}
+
 export function getLevel(id: LevelId): Level {
-  return { perpendicular, parallel, garage }[id]();
+  return { perpendicular, reverseBay, parallel, tightParallel, garage, carPark, coneCourse }[id]();
 }
 
 /* ---------- geometry ---------- */
@@ -495,11 +589,17 @@ export class Game {
       }
     }
 
-    // painted lines: each new contact with a solid line costs points
+    // painted lines: each new contact with a solid line costs points, except the lines of the bay itself and
+    // while the car is already parking (the same share of the car in the bay that frees the signals)
     const linesCount = this.level.lineFines !== false;
+    let parking: boolean | null = null;
     for (let i = 0; i < this.lineBox.length; i++) {
-      const hit = overlap(me, this.lineBox[i], this.theta, this.level.lines[i].rot ?? 0);
-      if (hit && !this.touching[i] && this.level.lines[i].solid && linesCount) this.fine("line", LINE_FINE);
+      const line = this.level.lines[i];
+      const hit = overlap(me, this.lineBox[i], this.theta, line.rot ?? 0);
+      if (hit && !this.touching[i] && line.solid && !line.bay && linesCount) {
+        parking ??= this.bayShare() >= BAY_FREE_SHARE;
+        if (!parking) this.fine("line", LINE_FINE);
+      }
       this.touching[i] = hit;
     }
     if (this.score < PASS_SCORE) return this.end("fines");
